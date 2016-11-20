@@ -21,7 +21,7 @@
       <div class="entry" v-html="marked(body)">
       </div>
     </div>
-    <div class="comments-wrapp">
+    <div class="comments-wrapp" v-if="state==='open'">
     </div>
   </div>
 </template>
