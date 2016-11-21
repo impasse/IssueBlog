@@ -1,14 +1,20 @@
 <template>
   <div class="header">
     <div class="title">
-      <a href="/">Issue Blog</a>
+      <router-link to="/">Issue Blog</router-link>
     </div>
     <div class="navigation">
       <div class="left">
         <ul class="menu">
-          <li><router-link to="/"><i class="fa fa-home"></i>Home</router-link></li>
-          <li><router-link to="/Links/"><i class="fa fa-link"></i>Links</router-link></li>
-          <li><router-link to="/About/"><i class="fa fa-link"></i>About</router-link></li>
+          <li>
+            <router-link to="/"><i class="fa fa-home"></i>Home</router-link>
+          </li>
+          <li>
+            <router-link to="/Links/"><i class="fa fa-link"></i>Links</router-link>
+          </li>
+          <li>
+            <router-link to="/About/"><i class="fa fa-link"></i>About</router-link>
+          </li>
         </ul>
       </div>
       <div class="mobile">
@@ -28,6 +34,7 @@
 </template>
 
 <style>
+
 </style>
 
 <script>
