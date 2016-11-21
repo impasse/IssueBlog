@@ -13,8 +13,8 @@
             <span class="category">
                     <ul class="post-categories">
                         <li v-for="tag in tags"><span :style="{color:'#'+tag.color}">{{tag.name}}</span></li>
-                    </ul>
-                    </span>
+            </ul>
+            </span>
           </div>
         </div>
       </div>
@@ -27,6 +27,7 @@
 </template>
 
 <style>
+
 </style>
 
 <script>
