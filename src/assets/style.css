@@ -812,8 +812,8 @@ textarea {
 }
 
 .comments-wrapp {
-  padding-left: 85px;
-  padding-right: 85px;
+  width: 80%;
+  margin: 10px auto;
 }
 
 /* Other */
