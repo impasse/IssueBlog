@@ -1,7 +1,7 @@
 //Prefer use old data and fetch new data concurrent
 const PERFIX = 'issueblog';
 class LocalStorage {
-  static get(k) {
+  get(k) {
     return JSON.parse(localStorage.getItem(`${PERFIX}_${k}`));
   }
 
