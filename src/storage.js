@@ -18,7 +18,7 @@ class LocalStorage {
   }
 
   keys() {
-    return Object.keys(localStorage).filter(k => k.startsWith(PERFIX));
+    return Object.keys(localStorage).filter(k => k.startsWith(PERFIX)).map(k => k.substring(PERFIX.length + 1));
   }
 }
 class MemoryStorage {

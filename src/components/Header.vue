@@ -21,7 +21,7 @@
         <ul>
           <li>
             <a class="mobile-menu-toggle" title="Menu"><i class="fa fa-th-list"></i></a>
-            <select class="mobile-menu-drop" id="m-menu" @change="router.push(this.value)">
+            <select class="mobile-menu-drop" id="m-menu" v-model="selected" @click="go(selected)">
               <option value="/">Home</option>
               <option value="/Links/">Links</option>
               <option value="/About/">About</option>
@@ -39,5 +39,15 @@
 
 <script>
     export default{
+      data(){
+        return {
+          selected:''
+        }
+      },
+      methods:{
+        go(path){
+          this.$router.push(path);
+        }
+      }
     }
 </script>

@@ -7,8 +7,8 @@ import AppList from './components/List'
 import AppPost from './components/Post'
 
 let routes = [
-  {path: '/', component: AppList},
-  {path: '/post/:number', component: AppPost}
+  { path: '/', component: AppList },
+  { path: '/post/:number', component: AppPost }
 ];
 
 Vue.use(VueRouter);
@@ -22,5 +22,5 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: {App}
+  components: { App }
 });

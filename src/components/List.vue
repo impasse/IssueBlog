@@ -46,16 +46,19 @@ import Storage from '../storage'
         }
       },
       created(){
-        this.posts = Storage.keys().sort().reverse().map(Storage.get);
+        this.fetch_from_storage();
         this.async_fetch_posts();
       },
       methods: {
+        fetch_from_storage(){
+          this.posts = Storage.keys().sort((a,b)=>b-a).map(Storage.get);
+        },
         async_fetch_posts(){
           Axios.get(`https://api.github.com/repos/${owner}/${repo}/issues?filter=created&state=all`)
             .then(res=>{
               if(res.status === 200){
                 Storage.keys().map(Storage.delete);
-                this.posts = res.data.filter(single=>{
+                res.data.filter(single=>{
                   return single.state !== 'closed';
                 }).map(single=>{
                   let data =  {
@@ -72,8 +75,8 @@ import Storage from '../storage'
                     })
                   };
                   Storage.set(data.number,data);
-                  return data;
                 });
+                this.fetch_from_storage();
               }else{
                 console.error('Error on fetching Posts');
               }

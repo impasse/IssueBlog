@@ -76,6 +76,7 @@ import Storage from '../storage'
                 date: res.data.created_at,
                 body: res.data.body,
                 state: res.data.state,
+                number: res.data.number,
                 tags: res.data.labels.map(label=>{
                       return {
                         name: label.name,
@@ -83,7 +84,7 @@ import Storage from '../storage'
                       };
                     })
               };
-              Storage.set(res.data.number,data);
+              Storage.set(data.number,data);
               Object.assign(this,data);
             }else{
               console.error('Error on fetching Post');
