@@ -21,7 +21,7 @@
         <ul>
           <li>
             <a class="mobile-menu-toggle" title="Menu"><i class="fa fa-th-list"></i></a>
-            <select class="mobile-menu-drop" id="m-menu" onchange="location.href=this.value">
+            <select class="mobile-menu-drop" id="m-menu" :onchange="router.push(this.value)">
               <option value="/">Home</option>
               <option value="/Links/">Links</option>
               <option value="/About/">About</option>
