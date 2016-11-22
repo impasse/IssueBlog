@@ -31,6 +31,7 @@
 </template>
 
 <style>
+
 </style>
 
 <script>
@@ -54,7 +55,9 @@ import Storage from '../storage'
             .then(res=>{
               if(res.status === 200){
                 Storage.keys().map(Storage.delete);
-                this.posts = res.data.map(single=>{
+                this.posts = res.data.filter(single=>{
+                  return single.state !== 'closed';
+                }).map(single=>{
                   let data =  {
                     title: single.title,
                     state: single.state,

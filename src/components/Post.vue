@@ -13,20 +13,21 @@
             <span class="category">
                     <ul class="post-categories">
                         <li v-for="tag in tags"><span :style="{color:'#'+tag.color}">{{tag.name}}</span></li>
-                    </ul>
-                    </span>
+            </ul>
+            </span>
           </div>
         </div>
       </div>
       <div class="entry" v-html="marked(body)">
       </div>
     </div>
-    <div class="comments-wrapp" v-if="state==='open'">
+    <div class="comments-wrapp" v-if="!this.locked">
     </div>
   </div>
 </template>
 
 <style>
+
 </style>
 
 <script>
@@ -41,11 +42,12 @@ import Storage from '../storage'
           date:'' || '2016-11-20T19:04:18.054Z',
           body:'',
           state:'',
+          locked:false,
           tags:[]
         }
       },
       mounted(){
-        if(this.state!=='closed'){
+        if(!this.locked){
           let el = document.createElement('div');
           el.setAttribute('data-thread-key', this.$route.params.number);
           el.setAttribute('data-url', document.location.href);
