@@ -1,24 +1,24 @@
 //Prefer use old data and fetch new data concurrent
-
+const PERFIX = 'issueblog';
 class LocalStorage {
-  get(k) {
-    return JSON.parse(localStorage.getItem(k));
+  static get(k) {
+    return JSON.parse(localStorage.getItem(`${PERFIX}_${k}`));
   }
 
   set(k, v) {
-    localStorage.setItem(k, JSON.stringify(v));
+    localStorage.setItem(`${PERFIX}_${k}`, JSON.stringify(v));
   }
 
   delete(k) {
-    localStorage.removeItem(k);
+    localStorage.removeItem(`${PERFIX}_${k}`);
   }
 
   destory() {
-    localStorage.clear();
+    this.keys().forEach(this.delete);
   }
 
   keys() {
-    return Object.keys(localStorage);
+    return Object.keys(localStorage).filter(k => k.startsWith(PERFIX));
   }
 }
 class MemoryStorage {
