@@ -1,17 +1,37 @@
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import './assets/embed.js'
 
 import App from './App'
-import AppList from './components/List'
-import AppPost from './components/Post'
+import MuseUI from 'muse-ui'
+
+import 'material-design-icons-iconfont/dist/material-design-icons.scss'
+import 'muse-ui/dist/muse-ui.css'
+import 'roboto-fontface/css/roboto/roboto-fontface.css'
+import 'github-markdown-css/github-markdown.css'
+import 'assets/style.scss'
+
+import AppList from './components/list.vue'
+import AppPost from './components/post.vue'
+import AppPage from './components/page.vue'
+
+Vue.use(VueRouter);
+Vue.use(MuseUI);
+
+function component(Component) {
+  return function (data) {
+    return Vue.extend(data)(data);
+  }
+}
 
 let routes = [
   { path: '/', component: AppList },
-  { path: '/post/:number', component: AppPost }
+  { path: '/post/:number', component: AppPost },
+  { path: '/Links', component:AppPage },
+  { path: '/About', component:AppPage },
+  { path: '*', component: AppPage }
 ];
-
-Vue.use(VueRouter);
 
 let router = new VueRouter({
   routes
@@ -20,7 +40,6 @@ let router = new VueRouter({
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
-  template: '<App/>',
-  components: { App }
+  render: h => h(App),
+  router
 });

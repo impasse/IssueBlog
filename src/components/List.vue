@@ -1,37 +1,68 @@
 <template>
-  <div class="wrapp">
-    <div class="post" v-for="post in posts">
-      <div class="top">
-        <div class="title">
-          <router-link class="p-title" :to="`/post/${post.number}`" :title="post.title" href="#" rel="bookmark">
-            <i class="fa fa-file-text-o"></i>{{post.title}}
-          </router-link>
-        </div>
-        <div class="info">
-          <div class="white">
-            <span class="date">{{ format_date(post.date)}}</span>
+  <div id="content">
+    <mu-row class="row" v-for="post in posts">
+      <mu-col width="95" tablet="80" desktop="80" class="post">
+        <mu-card class="card">
+          <div class="tags">
+            <mu-chip v-for="tag in post.tags" class="tag" :style="{ backgroundColor: '#'+tag.color }">
+              {{tag.name}}
+            </mu-chip>
           </div>
-        </div>
-      </div>
-      <div class="entry" v-html="marked(init(post.body))">
-      </div>
-      <div class="bottom">
-        <div class="left">
-          <router-link class="more ripple" :to="`/post/${post.number}`"><i class="fa fa-caret-square-o-right"></i>阅读全文
-          </router-link>
-        </div>
-        <div class="right">
-          <div class="tag">
-            <span v-for="tag in post.tags" :style="{color: '#'+tag.color}">{{tag.name}}</span>
-          </div>
-        </div>
-      </div>
-    </div>
+          <mu-card-title :title="post.title" :subTitle="'Posted at '+ format_date(post.date)" @click="read_more(post.number)"/>
+          <mu-card-text v-html="marked(init(post.body))" class="markdown-body text">
+          </mu-card-text>
+          <mu-card-actions class="actions">
+            <mu-raised-button icon="library_books" class="more" label="阅读更多" secondary @click="read_more(post.number)"/>
+          </mu-card-actions>
+        </mu-card>
+      </mu-col>
+    </mu-row>
   </div>
 </template>
 
-<style>
-
+<style lang="scss" scoped>
+  .post:first-child {
+    margin-top: 20px;
+  }
+  .card {
+    height: 100%;
+    min-height: 250px;
+    border-radius: 5px;
+  }
+  .tags {
+    list-style-type:none;
+    position:absolute;
+    padding:0;
+    margin:0;
+    right:10px;
+    top: 15px;
+  }
+  .tag {
+    display: inline-block;
+    margin-right: 1px;
+  }
+  .text {
+    margin-bottom: 60px;
+  }
+  .actions {
+    width: 100%;
+    text-align: right;
+    padding-right: 4%;
+    padding-bottom: 16px;
+    position: absolute;
+    bottom: 0;
+  }
+  .row {
+    justify-content: center;
+  }
+  #content::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to bottom, #81d4fa, white);
+    z-index: -100;
+  }
 </style>
 
 <script>
@@ -40,6 +71,7 @@ import { owner, repo, marked, init, format_date } from '../const'
 import Storage from '../storage'
 
     export default{
+      name: 'List',
       data(){
         return {
           posts:[]
@@ -82,10 +114,13 @@ import Storage from '../storage'
               }
             })
         },
+        read_more(number){
+          this.$router.push('/post/' + number);
+          window.scrollTo(0,0);
+        },
         marked,
         init,
         format_date
       }
     }
-
 </script>

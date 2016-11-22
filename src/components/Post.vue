@@ -1,33 +1,60 @@
 <template>
-  <div class="wrapp">
-    <div class="page">
-      <div class="top">
-        <div class="title">
-          <a class="p-title" :title="title" rel="bookmark">
-            <i class="fa fa-file-text-o"></i>{{title}}</a>
-        </div>
-        <div class="info">
-          <div class="white">
-            <span class="date">{{format_date(date)}}</span>
-            <span class="dot"> - </span>
-            <span class="category">
-                    <ul class="post-categories">
-                        <li v-for="tag in tags"><span :style="{color:'#'+tag.color}">{{tag.name}}</span></li>
-            </ul>
-            </span>
+  <div id="post">
+    <mu-row class="row">
+      <mu-col width="95" tablet="80" desktop="80">
+        <mu-paper class="post" :zDepth="3">
+          <div class="title">{{title}}</div>
+          <div class="date">Posted at {{format_date(date)}}</div>
+          <div class="body markdown-body" v-html="marked(body)"></div>
+          <div class="tags">
+            <mu-chip v-for="tag in tags" class="tag" :style="{ backgroundColor: '#'+tag.color }">
+              {{tag.name}}
+            </mu-chip>
           </div>
-        </div>
-      </div>
-      <div class="entry" v-html="marked(body)">
-      </div>
-    </div>
-    <div class="comments-wrapp" v-if="!this.locked">
-    </div>
+        </mu-paper>
+      </mu-col>
+    </mu-row>
+    <mu-row class="row" v-if="!locked">
+      <mu-col width="95" tablet="80" desktop="80">
+        <mu-paper class="post" :zDepth="3">
+          <div id="comment-box"></div>
+        </mu-paper>
+      </mu-col>
+    </mu-row>
   </div>
 </template>
 
-<style>
+<style lang="scss" scoped>
+  .row {
+    justify-content: center;
+  }
+  .post {
+    margin-top: 50px;
+    padding: 40px;
+    padding-top: 20px;
+  }
 
+  .title {
+    font-size: 3em;
+    font-weight: bold;
+    width: 100%;
+    padding-bottom: 5px;
+  }
+
+  .date {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: .5em;
+    border-bottom: 1px dashed #ccc;
+  }
+  .tags {
+    margin-top:20px;
+    padding-top:20px;
+    border-top: 1px dashed #ccc;
+  }
+  .tag {
+    margin-right: 5px;
+  }
 </style>
 
 <script>
@@ -36,6 +63,7 @@ import { owner, repo, marked, format_date } from '../const'
 import Storage from '../storage'
 
     export default{
+      name: 'Post',
       data(){
         return {
           title:'',
@@ -46,13 +74,13 @@ import Storage from '../storage'
           tags:[]
         }
       },
-      mounted(){
+      updated(){
         if(!this.locked){
           let el = document.createElement('div');
           el.setAttribute('data-thread-key', this.$route.params.number);
           el.setAttribute('data-url', document.location.href);
           DUOSHUO.EmbedThread(el);
-          let comment_el = document.querySelector('.comments-wrapp');
+          let comment_el = document.querySelector('#comment-box');
           if(comment_el){
             Array.prototype.map.call(comment_el.childNodes,_=>_.remove());
             comment_el.append(el);
@@ -95,5 +123,7 @@ import Storage from '../storage'
         format_date
       }
     }
+
+
 
 </script>

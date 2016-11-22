@@ -16,6 +16,7 @@ module.exports = {
   owner: 'lingmm',
   repo: 'IssueBlog',
   site_name: 'Issue Blog',
+  site_description: '这里是一个用Issue写的博客',
   marked: v=>marked(v),
   init: v=> {
     v = v || '';
@@ -24,5 +25,19 @@ module.exports = {
   },
   format_date(date){
     return dateutil.format(date ? new Date(date) : new Date(), 'Y/m/d');
+  },
+  pages:{
+    '/Links':{
+      body:'## Links of my liked',
+      title:'Links'
+    },
+    '/About':{
+      body:'### About Me',
+      title:'About'
+    },
+    404:{
+      title:'404 Not Found',
+      body: '### this resource not be found'
+    }
   }
 };

@@ -1,6 +1,6 @@
-# issueblog
+# sakura
 
-> Issue Blog
+> A blog for github issue
 
 ## Build Setup
 

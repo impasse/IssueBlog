@@ -1,20 +1,16 @@
 <template>
-  <div class="footer">
-    <p><span class="date">© 2016</span>
-      <router-link class="title" to="/" title="Issue Blog"></router-link>
-    </p>
-    <p>
-      <router-link to="/">Issue Blog</router-link>
-    </p>
-  </div>
+    <div id="footer">
+          <span>&copy; shyling</span>
+    </div>
 </template>
 
-<style>
-
+<style lang="scss" scoped>
+  #footer {
+    margin: 30px auto;
+    text-align: center;
+    width: 80%;
+  }
 </style>
 
 <script>
-    export default{
-    }
-
 </script>

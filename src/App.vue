@@ -1,23 +1,37 @@
 <template>
-  <div class="main">
+  <div id="app">
     <app-header/>
-    <div class="content">
-      <router-view/>
-    </div>
+    <router-view/>
     <app-footer/>
+    <mu-float-button :icon="fab" class="float-button" @click="click_fab"/>
   </div>
 </template>
 
 <script>
-import AppHeader from './components/Header.vue'
-import AppFooter from './components/Footer.vue'
-import AppPost from './components/Post.vue'
-
-import './assets/style.css'
-import 'font-awesome/css/font-awesome.css'
+import AppHeader from './components/header.vue'
+import AppFooter from './components/footer.vue'
 
 export default {
   name: 'app',
+  data(){
+    return {
+      fab:'home'
+    }
+  },
+  created(){
+    window.addEventListener('scroll', ()=> {
+      this.fab = window.scrollY <= 100 ? 'home' : 'keyboard_arrow_up';
+    });
+  },
+  methods:{
+    click_fab(){
+      if(this.fab === 'home'){
+        this.$router.push('/');
+      }else{
+        window.scrollTo(0,0);
+      }
+    }
+  },
   components: {
     AppHeader,
     AppFooter
@@ -26,6 +40,14 @@ export default {
 
 </script>
 
-<style>
+<style lang="scss" scoped>
+  #app {
+    min-height: 100%;
+  }
 
+  .float-button {
+    position: fixed;
+    right: 25px;
+    bottom: 20px;
+  }
 </style>

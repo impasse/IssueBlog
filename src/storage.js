@@ -1,5 +1,5 @@
 //Prefer use old data and fetch new data concurrent
-const PERFIX = 'issueblog';
+const PERFIX = 'ISSUEBLOG';
 class LocalStorage {
   get(k) {
     return JSON.parse(localStorage.getItem(`${PERFIX}_${k}`));
@@ -19,6 +19,12 @@ class LocalStorage {
 
   keys() {
     return Object.keys(localStorage).filter(k => k.startsWith(PERFIX)).map(k => k.substring(PERFIX.length + 1));
+  }
+
+  each(func){
+    for(let i of this.keys()){
+      func(this.get(i),i);
+    }
   }
 }
 class MemoryStorage {
@@ -44,6 +50,12 @@ class MemoryStorage {
 
   keys() {
     return Object.keys(this._storage);
+  }
+
+  each(func){
+    for(let i of this.keys()){
+      func(this.get(i),i);
+    }
   }
 }
 
