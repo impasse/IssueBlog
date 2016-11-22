@@ -19,12 +19,6 @@ import AppPage from './components/page.vue'
 Vue.use(VueRouter);
 Vue.use(MuseUI);
 
-function component(Component) {
-  return function (data) {
-    return Vue.extend(data)(data);
-  }
-}
-
 let routes = [
   { path: '/', component: AppList },
   { path: '/post/:number', component: AppPost },
