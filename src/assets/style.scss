@@ -1,7 +1,11 @@
 * {
   font-family: Roboto,Lato,sans-serif;
 }
-#content img{
+html,body,ul,ol {
+  margin:0;
+  padding: 0;
+}
+.markdown-body img{
   width: auto!important;
   max-width: 90%;
   height: auto;

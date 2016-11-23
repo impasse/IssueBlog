@@ -4,7 +4,7 @@
     </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
   #footer {
     margin: 30px auto;
     text-align: center;

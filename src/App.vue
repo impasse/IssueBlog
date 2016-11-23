@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <app-header/>
-    <router-view/>
+    <transition >
+      <router-view enter-active-class="animated bounceOutLeft" leave-active-class="animated fadeIn"/>
+    </transition>
     <app-footer/>
     <mu-float-button :icon="fab" class="float-button" @click="click_fab"/>
   </div>
@@ -40,11 +42,7 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>
-  #app {
-    min-height: 100%;
-  }
-
+<style lang="scss">
   .float-button {
     position: fixed;
     right: 25px;

@@ -3,13 +3,16 @@
     <mu-appbar :title="site_name" @click="goto('/')">
       <mu-icon-button icon="menu" slot="left" @click="toggle_drawer"/>
       <mu-icon-menu icon="more_vert" slot="right">
+        <mu-menu-item title="Home" leftIcon="home" @click="goto('/')"/>
         <mu-menu-item title="Links" leftIcon="link" @click="goto('/Links')"/>
         <mu-menu-item title="About" leftIcon="person_pic" @click="goto('/About')"/>
       </mu-icon-menu>
     </mu-appbar>
     <mu-drawer :open="drawer_open" @close="toggle_drawer" :docked="false">
       <mu-appbar :title="site_name"/>
-      <mu-avatar src="http://q.qlogo.cn/qqapp/100229475/2229ECE6C6AA666326E6E67A8B541781/160" class="icon"/>
+      <div class="icon">
+        <img src="http://q.qlogo.cn/qqapp/100229475/2229ECE6C6AA666326E6E67A8B541781/160"/>
+      </div>
       <mu-content-block v-html="site_description" style="text-align:center">
       </mu-content-block>
       <mu-content-block>
@@ -19,11 +22,25 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
+  #header {
     .icon {
-    width: 100%;
-    height: auto;
-    transform: scale(0.61);
+      & {
+        width: 100%;
+        height: auto;
+        text-align:center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      img {
+        border-radius: 50%;
+        width: 160px;
+        height: 160px;
+     }
+    }
+    .mu-chip {
+      margin-right: 1px;
+    }
   }
 </style>
 

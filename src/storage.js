@@ -1,5 +1,5 @@
 //Prefer use old data and fetch new data concurrent
-const PERFIX = 'ISSUEBLOG';
+const PERFIX = 'ISSUEBLOG_POST';
 class LocalStorage {
   get(k) {
     return JSON.parse(localStorage.getItem(`${PERFIX}_${k}`));
@@ -14,16 +14,22 @@ class LocalStorage {
   }
 
   destory() {
-    this.keys().forEach(this.delete);
+    this.keys(post_only = false).forEach(this.delete);
   }
 
-  keys() {
-    return Object.keys(localStorage).filter(k => k.startsWith(PERFIX)).map(k => k.substring(PERFIX.length + 1));
+  keys(post_only = true) {
+    return Object.keys(localStorage).filter(k => {
+      if (post_only) {
+        return k.startsWith(PERFIX) && /\d$/.test(k);
+      } else {
+        return k.startsWith(PERFIX);
+      }
+    }).map(k => k.substring(PERFIX.length + 1));
   }
 
-  each(func){
-    for(let i of this.keys()){
-      func(this.get(i),i);
+  each(func) {
+    for (let i of this.keys()) {
+      func(this.get(i), i);
     }
   }
 }
@@ -48,13 +54,15 @@ class MemoryStorage {
     this._storage = {};
   }
 
-  keys() {
-    return Object.keys(this._storage);
+  keys(post_only = true) {
+    return Object.keys(this._storage).filter(k => {
+      return post_only ? /\d$/.test(k) : true;
+    });
   }
 
-  each(func){
-    for(let i of this.keys()){
-      func(this.get(i),i);
+  each(func) {
+    for (let i of this.keys()) {
+      func(this.get(i), i);
     }
   }
 }
@@ -67,4 +75,4 @@ function Storage() {
   }
 }
 
-module.exports = Storage();
+export default Storage();
