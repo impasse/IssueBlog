@@ -22,7 +22,7 @@ Vue.use(VueRouter);
 Vue.use(MuseUI);
 
 let routes = [
-  { path: '/', component: AppList },
+  { path: '/', name:'home', component: AppList },
   { path: '/post/:number', component: AppPost },
   { path: '/Links', component: AppPage },
   { path: '/About', component: AppPage },

@@ -1,18 +1,19 @@
 <template>
   <div id="content">
+    <mu-snackbar v-if="snackbar" :message="message" action="close" @actionClick="close_snackbar" @close="close_snackbar"/>
     <mu-row v-for="post in posts">
       <mu-col width="95" tablet="85" desktop="80" class="post">
         <mu-card class="card">
           <div class="tags">
-            <mu-chip v-for="tag in post.tags" class="tag" :style="tag_color(tag)">
+            <mu-chip v-for="tag in post.tags" :style="tag_color(tag)">
               {{tag.name}}
             </mu-chip>
           </div>
-          <mu-card-title :title="post.title" :subTitle="'Posted at '+ format_date(post.date)" @click="read_more(post.number)"/>
+          <mu-card-title :title="post.title" :subTitle="'Posted at '+ format_date(post.date)" @keydown="read_more(post.number)"/>
           <mu-card-text v-html="marked(init(post.body))" class="markdown-body text">
           </mu-card-text>
           <mu-card-actions class="actions">
-            <mu-raised-button icon="library_books" class="more" label="More" secondary @click="read_more(post.number)"/>
+            <mu-raised-button icon="library_books" class="more" label="READ MORE" secondary @click="read_more(post.number)"/>
           </mu-card-actions>
         </mu-card>
       </mu-col>
@@ -22,14 +23,6 @@
 
 <style lang="scss">
   #content {
-    &::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 60%;
-      background: linear-gradient(to bottom, #81d4fa, white);
-      z-index: -100;
-    }
     .post:first-child {
       margin-top: 20px;
     }
@@ -39,16 +32,23 @@
       border-radius: 5px;
     }
     .tags {
-      list-style-type:none;
-      position:absolute;
-      padding:0;
-      margin:0;
-      right:10px;
-      top: 15px;
-    }
-    .tag {
-      display: inline-block;
-      margin-right: 1px;
+      & {
+        position:absolute;
+        padding:0;
+        margin:0;
+        right:10px;
+        top: 15px;
+        z-index: 101;
+      }
+      .mu-chip {
+        & {
+          display: inline-block;
+          margin-right: 1px;
+        }
+        &:hover {
+          animation:pulse 1s infinite;
+        }
+      }
     }
     .text {
       margin-bottom: 60px;
@@ -78,11 +78,18 @@ import { Post } from '../model'
       mixins: [Utils],
       data(){
         return {
+          snackbar: false,
+          message: '',
           posts:[]
         }
       },
       created(){
-        Post.all().then(posts=>this.posts = posts);
+        Post.all()
+          .then(posts=>this.posts = posts)
+          .catch(e=>{
+            this.message = e.toString();
+            this.snackbar = true;
+          });
       },
       mounted(){
         document.title = site_name;
@@ -91,6 +98,9 @@ import { Post } from '../model'
         read_more(number){
           this.$router.push('/post/' + number);
           window.scrollTo(0,0);
+        },
+        close_snackbar(){
+          this.snackbar = false;
         }
       }
     }

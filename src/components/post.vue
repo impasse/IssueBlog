@@ -1,5 +1,6 @@
 <template>
   <div id="post">
+    <mu-snackbar v-if="snackbar" :message="message" action="Close" @actionClick="close_snackbar" @close="close_snackbar"/>
     <mu-row>
       <mu-col width="95" tablet="85" desktop="80">
         <mu-paper class="post" :zDepth="3">
@@ -7,7 +8,7 @@
           <div class="date">Posted at {{format_date(date)}}</div>
           <div class="body markdown-body" v-html="marked(body)"></div>
           <div class="tags">
-            <mu-chip v-for="tag in tags" class="tag" :style="tag_color(tag)">
+            <mu-chip v-for="tag in tags" :style="tag_color(tag)">
               {{tag.name}}
             </mu-chip>
           </div>
@@ -57,8 +58,13 @@
       padding-top:20px;
       border-top: 1px dashed #ccc;
     }
-    .tag {
-      margin-right: 5px;
+    .mu-chip {
+      & {
+        margin-right: 5px;
+      }
+      &:hover {
+        animation:pulse 1s infinite;
+      }
     }
   }
 </style>
@@ -79,7 +85,9 @@ import { Post } from '../model'
           body:'',
           state:'',
           locked:false,
-          tags:[]
+          tags:[],
+          snackbar: false,
+          message: ''
         }
       },
       updated(){
@@ -97,11 +105,20 @@ import { Post } from '../model'
       },
       created(){
         Post.get(this.$route.params.number)
-          .then(post=>Object.assign(this,post));
+          .then(post=>Object.assign(this,post))
+          .catch(e=>{
+            this.message = e.toString();
+            this.snackbar = true;
+          });
       },
       watch: {
         title: function(){
           document.title = this.title + ' | ' + site_name;
+        }
+      },
+      methods: {
+        close_snackbar(){
+          this.snackbar = false;
         }
       }
     }

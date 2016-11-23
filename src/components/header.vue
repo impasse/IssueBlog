@@ -16,7 +16,7 @@
       <mu-content-block v-html="site_description" style="text-align:center">
       </mu-content-block>
       <mu-content-block>
-        <mu-chip v-for="tag in tags" :style="{ backgroundColor: '#'+tag.color }">{{tag.name}}</mu-chip>
+        <mu-chip v-for="tag in tags" :style="tag_color(tag)">{{tag.name}}</mu-chip>
       </mu-content-block>
     </mu-drawer>
   </div>
@@ -33,13 +33,25 @@
         margin-bottom: 20px;
       }
       img {
-        border-radius: 50%;
-        width: 160px;
-        height: 160px;
+        & {
+          border-radius: 50%;
+          width: 160px;
+          height: 160px;
+          box-sizing: border-box;
+          box-shadow: 3px 1px 3px #999;
+        }
+        &:hover {
+          animation:rotateIn 1.2s infinite;
+        }
      }
     }
     .mu-chip {
-      margin-right: 1px;
+      & {
+        margin-right: 1px;
+      }
+      &:hover {
+        animation:pulse 1s infinite;
+      }
     }
   }
 </style>
@@ -47,8 +59,10 @@
 <script>
 import { site_name, site_description } from '../const'
 import Storage from '../storage'
+import Utils from '../mixin'
 
   export default {
+  mixins: [Utils],
   name: 'Header',
   data(){
     return {

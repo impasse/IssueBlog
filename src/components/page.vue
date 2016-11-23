@@ -2,7 +2,7 @@
   <div id="page">
     <mu-row>
       <mu-col width="95" tablet="85" desktop="80">
-        <mu-paper class="page" :zDepth="3">
+        <mu-paper :zDepth="3">
           <div class="title">{{title}}</div>
           <div class="body" v-html="marked(body)"></div>
         </mu-paper>
@@ -13,17 +13,22 @@
 
 <style lang="scss">
   #page {
+    & {
+      height: 100%;
+    }
     .row {
-      justify-content: center;
+      & {
+        justify-content: center;
+      }
     }
     .title {
       font-size:3em;
       border-bottom: 1px dashed #ccc;
     }
-    .page {
+    .mu-paper {
       margin-top: 30px;
       padding:30px;
-      min-height: 100%;
+      min-height: 600px;
     }
   }
 </style>
@@ -41,17 +46,25 @@ import Utils from '../mixin'
         title:''
       }
     },
-    beforeRouteEnter (to, from, next) {
-      let current = pages[to.path];
+    mounted(){
+      this.refresh_page();
+    },
+    methods:{
+      refresh_page(){
+        let current = pages[this.$route.path];
         if(current){
-          next(vm=>Object.assign(vm,current));
+          Object.assign(this,current);
         }else{
-          next(vm=>Object.assign(vm,pages[404]));
+          Object.assign(this,pages[404]);
         }
+      }
     },
     watch:{
       title:function(){
         document.title = this.title + ' - ' + site_name;
+      },
+      $route:function(){
+        this.refresh_page();
       }
     }
   }
