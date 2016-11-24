@@ -11,7 +11,7 @@
     <mu-drawer :open="drawer_open" @close="toggle_drawer" :docked="false">
       <mu-appbar :title="site_name"/>
       <div class="icon">
-        <img src="http://q.qlogo.cn/qqapp/100229475/2229ECE6C6AA666326E6E67A8B541781/160"/>
+        <img src="//q.qlogo.cn/qqapp/100229475/2229ECE6C6AA666326E6E67A8B541781/160"/>
       </div>
       <mu-content-block v-html="site_description" style="text-align:center">
       </mu-content-block>
