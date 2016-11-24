@@ -30,7 +30,7 @@ let routes = [
 ];
 
 let router = new VueRouter({
-  routes,,
+  routes
 });
 
 /* eslint-disable no-new */

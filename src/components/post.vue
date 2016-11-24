@@ -90,7 +90,7 @@ import { Post } from '../model'
           message: ''
         }
       },
-      updated(){
+      mounted(){
         if(!this.locked){
           let el = document.createElement('div');
           el.setAttribute('data-thread-key', this.$route.params.number);
