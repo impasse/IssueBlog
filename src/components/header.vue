@@ -41,7 +41,7 @@
           box-shadow: 3px 1px 3px #999;
         }
         &:hover {
-          animation:rotateIn 1.2s infinite;
+          animation:rotateIn 1.2s;
         }
      }
     }
