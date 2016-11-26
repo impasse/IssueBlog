@@ -3,7 +3,7 @@
     <mu-row>
       <mu-col width="95" tablet="85" desktop="80">
         <mu-paper :zDepth="3">
-          <div class="title">{{title}}</div>
+          <div class="title" v-show="title">{{title}}</div>
           <div class="body" v-html="marked(body)"></div>
         </mu-paper>
       </mu-col>
@@ -12,25 +12,25 @@
 </template>
 
 <style lang="scss">
-  #page {
+#page {
+  & {
+    height: 100%;
+  }
+  .row {
     & {
-      height: 100%;
-    }
-    .row {
-      & {
-        justify-content: center;
-      }
-    }
-    .title {
-      font-size:3em;
-      border-bottom: 1px dashed #ccc;
-    }
-    .mu-paper {
-      margin-top: 30px;
-      padding:30px;
-      min-height: 600px;
+      justify-content: center;
     }
   }
+  .title {
+    font-size:3em;
+    border-bottom: 1px dashed #ccc;
+  }
+  .mu-paper {
+    margin-top: 30px;
+    padding:30px;
+    min-height: 600px;
+  }
+}
 </style>
 
 <script>

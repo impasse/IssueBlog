@@ -1,6 +1,8 @@
 //Prefer use old data and fetch new data concurrent
 const PERFIX = 'ISSUEBLOG_POST';
+
 class LocalStorage {
+
   get(k) {
     return JSON.parse(localStorage.getItem(`${PERFIX}_${k}`));
   }
@@ -32,8 +34,12 @@ class LocalStorage {
       func(this.get(i), i);
     }
   }
+
 }
+
+
 class MemoryStorage {
+
   constructor() {
     this._storage = {};
   }

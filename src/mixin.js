@@ -37,11 +37,8 @@ export default {
           color: (r * 0.299 + 0.587 * g + 0.114 * b) < 128 ? 'white' : 'black'
         };
       } else {
-        return {
-          color: 'black',
-          backgroundColor: 'white'
-        };
+        return {};
       }
-    },
+    }
   }
 }

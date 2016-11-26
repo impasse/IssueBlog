@@ -13,9 +13,9 @@
       <div class="icon">
         <img src="//q.qlogo.cn/qqapp/100229475/2229ECE6C6AA666326E6E67A8B541781/160"/>
       </div>
-      <mu-content-block v-html="site_description" style="text-align:center">
+      <mu-content-block v-html="marked(site_description)" style="text-align:center">
       </mu-content-block>
-      <mu-content-block>
+      <mu-content-block class="tags">
         <mu-chip v-for="tag in tags" :style="tag_color(tag)">{{tag.name}}</mu-chip>
       </mu-content-block>
     </mu-drawer>
@@ -23,37 +23,45 @@
 </template>
 
 <style lang="scss">
-  #header {
-    .icon {
-      & {
-        width: 100%;
-        height: auto;
-        text-align:center;
-        margin-top: 20px;
-        margin-bottom: 20px;
-      }
-      img {
-        & {
-          border-radius: 50%;
-          width: 160px;
-          height: 160px;
-          box-sizing: border-box;
-          box-shadow: 3px 1px 3px #999;
-        }
-        &:hover {
-          animation:rotateIn 1.2s infinite;
-        }
-     }
+@import '../assets/variables.scss';
+#header {
+  .mu-appbar {
+    background-color: $primary_color;
+  }
+  .tags {
+    display: flex;
+    justify-content: space-between;
+  }
+  .icon {
+    & {
+      width: 100%;
+      height: auto;
+      text-align:center;
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
-    .mu-chip {
+    img {
       & {
-        margin-right: 1px;
+        border-radius: 50%;
+        width: 160px;
+        height: 160px;
+        box-sizing: border-box;
+        box-shadow: 0px 0px 3px #909;
       }
       &:hover {
-        animation:pulse 1s infinite;
+        animation:rotateIn 1.2s infinite;
       }
     }
   }
+  .mu-chip {
+    & {
+      margin-right: 1px;
+    }
+    &:hover {
+      animation:pulse 1s infinite;
+    }
+  }
+}
 </style>
 
 <script>
@@ -61,7 +69,7 @@ import { site_name, site_description } from '../const'
 import Storage from '../storage'
 import Utils from '../mixin'
 
-  export default {
+export default {
   mixins: [Utils],
   name: 'Header',
   data(){
@@ -95,5 +103,4 @@ import Utils from '../mixin'
     }
   }
 }
-
 </script>

@@ -5,7 +5,9 @@
       <router-view/>
     </transition>
     <app-footer/>
-    <mu-float-button :icon="fab" v-show="show_fab" class="float-button" secondary @click="click_fab"/>
+    <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+      <mu-float-button :icon="fab" v-show="show_fab" class="float-button" secondary @click="click_fab"/>
+    </transition>
   </div>
 </template>
 
@@ -33,7 +35,7 @@ export default {
   },
   methods:{
     update_fab(){
-      this.fab = window.scrollY <= 200 ? 'home' : 'keyboard_arrow_up';
+      this.fab = window.scrollY <= 300 ? 'home' : 'keyboard_arrow_up';
       this.show_fab = !(this.$route.name === 'home' && this.fab === 'home');
     },
     click_fab(){
@@ -53,24 +55,26 @@ export default {
 </script>
 
 <style lang="scss">
-  #app{
-    & {
-      height: 100%;
-    }
-    &::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 60%;
-      min-height: 600px;
-      background: linear-gradient(to bottom, #81d4fa 60%, white);
-      z-index: -100;
-    }
+@import './assets/variables.scss';
+#app{
+  & {
+    height: 100%;
   }
-  .float-button {
+  &::before {
+    content: '';
     position: fixed;
-    z-index: 1000;
-    right: 25px;
-    bottom: 20px;
+    width: 100%;
+    height: 60%;
+    min-height: 600px;
+    background: linear-gradient(to bottom, #5C6BC0 61%, white 39%);
+    z-index: -100;
   }
+}
+.float-button {
+  position: fixed;
+  z-index: 1000;
+  right: 25px;
+  bottom: 20px;
+  background: $secondary_color;
+}
 </style>
