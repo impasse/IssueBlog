@@ -66,7 +66,7 @@ export default {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, #5C6BC0 65%, #FCE4EC 35%);
+    background: linear-gradient(to bottom, #5C6BC0 65%, $background_color 35%);
     z-index: -100;
   }
 }
