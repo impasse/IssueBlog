@@ -32,6 +32,7 @@
   }
   .mu-card-title{
     cursor: pointer;
+    user-select: none;
   }
   .mu-card-sub-title {
     &::before {
@@ -73,7 +74,6 @@
       text-align: right;
       padding-right: 4%;
       padding-bottom: 16px;
-      position: absolute;
       bottom: 0;
     }
     .mu-raised-button-secondary{

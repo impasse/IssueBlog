@@ -35,7 +35,8 @@ export default {
   },
   methods:{
     update_fab(){
-      this.fab = window.scrollY <= 300 ? 'home' : 'keyboard_arrow_up';
+      let pos = window.scrollY === undefined ? document.documentElement.scrollTop : window.scrollY;
+      this.fab = pos <= 300 ? 'home' : 'keyboard_arrow_up';
       this.show_fab = !(this.$route.name === 'home' && this.fab === 'home');
     },
     click_fab(){
@@ -64,9 +65,8 @@ export default {
     content: '';
     position: fixed;
     width: 100%;
-    height: 60%;
-    min-height: 600px;
-    background: linear-gradient(to bottom, #5C6BC0 61%, white 39%);
+    height: 100%;
+    background: linear-gradient(to bottom, #5C6BC0 65%, #FCE4EC 35%);
     z-index: -100;
   }
 }

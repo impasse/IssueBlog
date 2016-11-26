@@ -1,6 +1,14 @@
 //Prefer use old data and fetch new data concurrent
 const PERFIX = 'ISSUEBLOG_POST';
 
+function startsWith(str,arg){
+  if(str['startsWith']){
+    return str.startsWith(arg);
+  }else{
+    return new RegExp('^' + arg).test(arg);
+  }
+}
+
 class LocalStorage {
 
   get(k) {
@@ -22,9 +30,9 @@ class LocalStorage {
   keys(post_only = true) {
     return Object.keys(localStorage).filter(k => {
       if (post_only) {
-        return k.startsWith(PERFIX) && /\d$/.test(k);
+        return startsWith(k,PERFIX) && /\d$/.test(k);
       } else {
-        return k.startsWith(PERFIX);
+        return startsWith(k,PERFIX);
       }
     }).map(k => k.substring(PERFIX.length + 1));
   }

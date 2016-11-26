@@ -107,8 +107,10 @@ export default{
       DUOSHUO.EmbedThread(el);
       let comment_el = document.querySelector('#comment-box');
       if(comment_el){
-        Array.prototype.map.call(comment_el.childNodes,_=>_.remove());
-        comment_el.append(el);
+        comment_el.innerHTML = '';
+        if(comment_el.append){
+          comment_el.append(el);
+        }
       }
     }
   },

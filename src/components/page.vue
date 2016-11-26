@@ -3,7 +3,7 @@
     <mu-row>
       <mu-col width="95" tablet="85" desktop="80">
         <mu-paper :zDepth="3">
-          <div class="title" v-show="title">{{title}}</div>
+          <div class="title" v-show="title.length!==0">{{title}}</div>
           <div class="body" v-html="marked(body)"></div>
         </mu-paper>
       </mu-col>
