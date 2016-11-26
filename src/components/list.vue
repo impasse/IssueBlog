@@ -22,6 +22,9 @@
 <style lang="scss">
 @import '../assets/variables.scss';
 #content {
+  & {
+    min-height: 600px;
+  }
   .post:first-child {
     margin-top: 20px;
   }
