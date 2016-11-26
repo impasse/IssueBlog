@@ -28,7 +28,7 @@
   .mu-paper {
     margin-top: 30px;
     padding:30px;
-    min-height: 600px;
+    min-height: 700px;
   }
 }
 </style>
