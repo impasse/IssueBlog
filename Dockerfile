@@ -14,6 +14,6 @@ WORKDIR /srv
 
 RUN npm i \
   && npm run build \
-  && mv /srv/* /usr/share/nginx/html
+  && mv /srv/dist/* /usr/share/nginx/html
 
 CMD ["nginx", "-g", "daemon off;"]
