@@ -1,7 +1,7 @@
 <template>
     <div id="footer">
           <div class="copyright">shyling</div>
-          <div class="link"><a href="https://github.com/lingmm" target="__blank"><img src="../assets/social_github.png" alt="Github"/></a></div>
+          <div class="link"><a href="https://github.com/lingmm" target="__blank"><img src="../assets/github-logo.png" alt="Github"/></a></div>
     </div>
 </template>
 
@@ -13,7 +13,6 @@
     width: 100%;
     height: 96px;
     background-color: $primary_color;
-    position: relative;
     display: flex;
     flex-direction: row-reverse;
     align-items: center;

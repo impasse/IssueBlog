@@ -5,24 +5,29 @@ let https = require('https');
 let fs = require('fs');
 
 let app = express();
+
 app.disable('x-powered-by');
 
 app.use(require('morgan')('tiny'));
-app.use(express.static(path.join(__dirname + '/dist')));
-app.use(function(req,res,next){
-    res.sendfile(path.join(__dirname,'/dist','index.html'));
+
+// Content-Security-Policy
+app.use(function (req, res, next) {
+    res.set('Content-Security-Policy', 'upgrade-insecure-requests');
 });
+
+app.use(express.static(path.join(__dirname + '/dist')));
 
 http.createServer(app).listen(80);
 
-let key = path.join(__dirname,'/https','ssl.key');
-let cert = path.join(__dirname,'/https','ssl.crt');
-if(fs.existsSync(key) && fs.existsSync(cert)){
+let key = path.join(__dirname, '/https', 'ssl.key');
+let cert = path.join(__dirname, '/https', 'ssl.crt');
+
+if (fs.existsSync(key) && fs.existsSync(cert)) {
     https.createServer({
-        key:fs.readFileSync(key),
-        cert:fs.readFileSync(cert)
+        key: fs.readFileSync(key),
+        cert: fs.readFileSync(cert)
     },
-    app
+        app
     ).listen(443);
 }
 

@@ -30,7 +30,7 @@
   }
   .tags {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
   }
   .icon {
     & {
@@ -45,7 +45,6 @@
         border-radius: 50%;
         width: 160px;
         height: 160px;
-        box-sizing: border-box;
         box-shadow: 0px 0px 3px #909;
       }
       &:hover {
