@@ -26,6 +26,7 @@
 </template>
 
 <style lang="scss">
+@import '../assets/variables.scss';
 #post {
   .row {
     justify-content: center;
@@ -42,10 +43,11 @@
     }
   }
   .title {
-    font-size: 3em;
-    font-weight: bold;
+    font-size: 24px;
+    line-height: 36px;
     width: 100%;
     padding-bottom: 5px;
+    color: $primary_text_color;
   }
   .date {
     & {
