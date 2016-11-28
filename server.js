@@ -5,12 +5,12 @@ let https = require('https');
 let fs = require('fs');
 
 let app = express();
-app.disable(‘x-powered-by’);
+app.disable('x-powered-by');
 
 app.use(require('morgan')('tiny'));
 app.use(express.static(path.join(__dirname + '/dist')));
-app.use(function(err,req,res,next){
-    res.sendfile(path.join(__dirname,'dist','index.html'));
+app.use(function(req,res,next){
+    res.sendfile(path.join(__dirname,'/dist','index.html'));
 });
 
 http.createServer(app).listen(80);
