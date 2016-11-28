@@ -5,6 +5,7 @@ let https = require('https');
 let fs = require('fs');
 
 let app = express();
+app.disable(‘x-powered-by’);
 
 app.use(require('morgan')('tiny'));
 app.use(express.static(path.join(__dirname + '/dist')));
