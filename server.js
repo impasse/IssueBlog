@@ -12,7 +12,9 @@ app.use(require('morgan')('tiny'));
 
 // Content-Security-Policy
 app.use(function (req, res, next) {
-    res.set('Content-Security-Policy', 'upgrade-insecure-requests');
+    if(req.secure){
+        res.set('Content-Security-Policy', 'upgrade-insecure-requests');
+    }
     next();
 });
 
