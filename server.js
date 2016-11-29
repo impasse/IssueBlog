@@ -12,7 +12,7 @@ app.use(require('morgan')('tiny'));
 app.use(require('compression')());
 // Content-Security-Policy
 app.use(function (req, res, next) {
-    if(req.secure){
+    if(req.secure && req.get('Upgrade-Insecure-Requests') == 1){
         res.set('Content-Security-Policy', 'upgrade-insecure-requests');
     }
     next();
