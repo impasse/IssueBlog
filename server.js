@@ -9,7 +9,7 @@ let app = express();
 app.disable('x-powered-by');
 
 app.use(require('morgan')('tiny'));
-
+app.use(require('compression')());
 // Content-Security-Policy
 app.use(function (req, res, next) {
     if(req.secure){
