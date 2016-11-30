@@ -16,19 +16,19 @@ export const site_description =
 
 let links = `
 <ul>
-<li><a href="https://emiria.io" target="__blank">蔓舞寻樱的博客</a></li>
-<li><a href="http://blog.supvesonico.moe" target="__blank">Sonico’s Home</a></li>
-<li><a href="https://ciyuanai.net" target="__blank">Ciyuan'ai</a></li>
-<li><a href="http://txiner.top" target="__blank">Hundred Blog</a></li>
-<li><a href="http://uikoo9.com" target="__blank">uikoo9的个人网站</a></li>
-<li><a href="http://www.yanhao.site" target="__blank">Yanhao's Blog</a></li>
-<li><a href="http://blog.lanyus.com" target="__blank">ilanyu's Blog</a></li>
-<li><a href="https://blog.lwl12.com" target="__blank">LWL的自由天空</a></li>
-<li><a href="http://arondight.me" target="__blank">河的第三条岸</a></li>
-<li><a href="https://bismarck.moe" target="__blank">雨宫千鹤</a></li>
-<li><a href="https://www.moew.xyz" target="__blank">夜雨初霁的小窝</a></li>
-<li><a href="http://ouzz.me" target="__blank">ouzz的博客</a></li>
-<li><a href="http://anneke.cn" target="__blank">卷猫's blog</a></li>
+<li><a href="https://emiria.io" target="_blank">蔓舞寻樱的博客</a></li>
+<li><a href="http://blog.supvesonico.moe" target="_blank">Sonico’s Home</a></li>
+<li><a href="https://ciyuanai.net" target="_blank">Ciyuan'ai</a></li>
+<li><a href="http://txiner.top" target="_blank">Hundred Blog</a></li>
+<li><a href="http://uikoo9.com" target="_blank">uikoo9的个人网站</a></li>
+<li><a href="http://www.yanhao.site" target="_blank">Yanhao's Blog</a></li>
+<li><a href="http://blog.lanyus.com" target="_blank">ilanyu's Blog</a></li>
+<li><a href="https://blog.lwl12.com" target="_blank">LWL的自由天空</a></li>
+<li><a href="http://arondight.me" target="_blank">河的第三条岸</a></li>
+<li><a href="https://bismarck.moe" target="_blank">雨宫千鹤</a></li>
+<li><a href="https://www.moew.xyz" target="_blank">夜雨初霁的小窝</a></li>
+<li><a href="http://ouzz.me" target="_blank">ouzz的博客</a></li>
+<li><a href="http://anneke.cn" target="_blank">卷猫's blog</a></li>
 </ul>
 `;
 
