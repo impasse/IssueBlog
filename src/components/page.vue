@@ -14,11 +14,13 @@
 <style lang="scss">
 #page {
   & {
-    height: 100%;
+    min-height: calc(100vh - 292px);
+    flex-flow: column;
   }
   .row {
     & {
       justify-content: center;
+      flex: 1;
     }
   }
   .title {
@@ -28,7 +30,7 @@
   .mu-paper {
     margin-top: 30px;
     padding:30px;
-    min-height: 700px;
+    min-height: 60vh;
   }
 }
 </style>

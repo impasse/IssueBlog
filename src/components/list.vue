@@ -4,12 +4,12 @@
     <mu-row v-for="post in posts">
       <mu-col width="95" tablet="85" desktop="80" class="post">
         <mu-card class="card">
-          <div class="tags">
-            <mu-chip v-for="tag in post.tags" :style="tag_color(tag)">{{tag.name}}</mu-chip>
-          </div>
           <div @click="read_more(post.number)"><mu-card-title :title="post.title" :subTitle="'Posted at '+ format_date(post.date)"/></div>
           <mu-card-text v-html="marked(init(post.body))" class="markdown-body text">
           </mu-card-text>
+          <div class="tags">
+            <mu-chip v-for="tag in post.tags" :style="tag_color(tag)">{{tag.name}}</mu-chip>
+          </div>
           <mu-card-actions class="actions">
             <mu-raised-button icon="library_books" class="more" label="READ MORE" secondary @click="read_more(post.number)"/>
           </mu-card-actions>
@@ -51,8 +51,7 @@
   }
   .tags {
     & {
-      position:absolute;
-      padding:0;
+      padding-left: 4%;
       margin:0;
       right:10px;
       top: 15px;

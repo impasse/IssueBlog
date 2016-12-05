@@ -33,14 +33,7 @@ let links = `
 `;
 
 let about = `
-\`\`\`haskell
-Prelude> writeFile "load.hs" "main = putStrLn \"酱油选手一只\""
-Prelude> :load load.hs
-[1 of 1] Compiling Main             ( load.hs, interpreted )
-Ok, modules loaded: Main.
-*Main> main
-酱油选手一只
-\`\`\`
+ISTP一只。
 `;
 
 export const pages = {
