@@ -56,6 +56,7 @@
   .mu-chip {
     & {
       margin-right: 1px;
+      margin-bottom: 5px;
     }
     &:hover {
       animation:pulse 1s infinite;
