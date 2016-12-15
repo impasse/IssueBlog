@@ -31,6 +31,7 @@ let links = `
 <li><a href="http://ouzz.me" target="_blank">ouzz的博客</a></li>
 <li><a href="http://anneke.cn" target="_blank">卷猫's blog</a></li>
 <li><a href="http://blog.zhouys.ac.cn" target="_blank">東雲研究所</a></li>
+<li><a href="https://coolrc.me/" target="_blank">Just4fun</a></li>
 </ul>
 `;
 
