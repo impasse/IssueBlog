@@ -23,7 +23,9 @@
 @import '../assets/variables.scss';
 #content {
   & {
-    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 196px - 64px);
   }
   .post:first-child {
     margin-top: 20px;

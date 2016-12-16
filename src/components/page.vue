@@ -14,8 +14,9 @@
 <style lang="scss">
 #page {
   & {
-    min-height: calc(100vh - 292px);
-    flex-flow: column;
+    min-height: calc(100vh - 260px);
+    display: flex;
+    flex-direction: column;
   }
   .row {
     & {
@@ -29,8 +30,8 @@
   }
   .mu-paper {
     margin-top: 30px;
+    min-height: 400px;
     padding:30px;
-    min-height: 60vh;
   }
 }
 </style>
