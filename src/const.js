@@ -16,6 +16,7 @@ export const site_description =
 
 let links = `
 <ul>
+<li><a href="https://www.261day.com" target="_blank">261days</a></li>
 <li><a href="https://emiria.io" target="_blank">蔓舞寻樱的博客</a></li>
 <li><a href="http://blog.supvesonico.moe" target="_blank">Sonico’s Home</a></li>
 <li><a href="https://ciyuanai.net" target="_blank">Ciyuan'ai</a></li>
@@ -29,11 +30,19 @@ let links = `
 <li><a href="https://www.moew.xyz" target="_blank">夜雨初霁的小窝</a></li>
 <li><a href="http://ouzz.me" target="_blank">ouzz的博客</a></li>
 <li><a href="http://anneke.cn" target="_blank">卷猫's blog</a></li>
+<li><a href="http://blog.zhouys.ac.cn" target="_blank">東雲研究所</a></li>
+<li><a href="https://coolrc.me/" target="_blank">Just4fun</a></li>
 </ul>
 `;
 
 let about = `
-ISTP一只。
+博主大四(目前正在实习Orz),目前主业是Node相关
+
+目前坐标北京,住在某睡城.
+
+专业三分热度,曾很喜欢Ruby,C++,Scala,酱油Pythonist,偶尔写写前端,当当运维0v0.
+
+Email: i(at)shyling.com
 `;
 
 export const pages = {
