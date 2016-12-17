@@ -1,8 +1,8 @@
 {
   "name": "issueblog",
   "version": "1.0.0",
-  "description": "A blog for github issue",
-  "author": "ling<i@zyy.moe>",
+  "description": "A md style blog for github issue",
+  "author": "ling<i@shyling.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
@@ -16,6 +16,7 @@
     "es6-promise": "^4.0.5",
     "github-markdown-css": "^2.4.1",
     "highlight.js": "^9.8.0",
+    "keycode": "^2.1.8",
     "marked": "^0.3.6",
     "material-design-icons-iconfont": "^3.0.2",
     "muse-ui": "^2.0.0-alpha.8",
@@ -46,7 +47,7 @@
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "morgan": "^1.7.0",
-    "node-sass": "^3.13.0",
+    "node-sass": "^4.0.0",
     "opn": "^4.0.2",
     "ora": "^0.3.0",
     "sass-loader": "^4.0.2",
@@ -59,7 +60,7 @@
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.8.3",
     "webpack-hot-middleware": "^2.12.2",
-    "webpack-merge": "^0.17.0"
+    "webpack-merge": "^1.1.1"
   },
   "engines": {
     "node": ">= 4.0.0",
