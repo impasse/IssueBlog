@@ -4,6 +4,7 @@ import { owner, repo } from './const'
 
 const FETCH_ALL_TIME = 'FETCH_ALL_TIME';
 
+// cache expires after 1h, if cache available, not request remote
 export class Post {
   static perfix = 'https://api.github.com';
   static timeout = 60 * 60 * 1000;
