@@ -1,8 +1,11 @@
+import { genLinks } from './utils'
+
+
 export const owner = 'lingmm';
 export const repo = 'IssueBlog';
 export const site_name = '泠的博客';
-export const site_description = 
-`この光が空を越えて羽ばたいてゆく
+export const site_description =
+  `この光が空を越えて羽ばたいてゆく
 
 そんな歌を届けたい
 
@@ -14,45 +17,43 @@ export const site_description =
 
 輝く星になりたい`;
 
-let links = `
-<ul>
-<li><a href="https://www.261day.com" target="_blank">261days</a></li>
-<li><a href="https://emiria.io" target="_blank">蔓舞寻樱的博客</a></li>
-<li><a href="http://blog.supvesonico.moe" target="_blank">Sonico’s Home</a></li>
-<li><a href="https://ciyuanai.net" target="_blank">Ciyuan'ai</a></li>
-<li><a href="http://txiner.top" target="_blank">Hundred Blog</a></li>
-<li><a href="http://uikoo9.com" target="_blank">uikoo9的个人网站</a></li>
-<li><a href="http://www.yanhao.site" target="_blank">Yanhao's Blog</a></li>
-<li><a href="http://blog.lanyus.com" target="_blank">ilanyu's Blog</a></li>
-<li><a href="https://blog.lwl12.com" target="_blank">LWL的自由天空</a></li>
-<li><a href="http://arondight.me" target="_blank">河的第三条岸</a></li>
-<li><a href="https://bismarck.moe" target="_blank">雨宫千鹤</a></li>
-<li><a href="https://www.moew.xyz" target="_blank">夜雨初霁的小窝</a></li>
-<li><a href="http://ouzz.me" target="_blank">ouzz的博客</a></li>
-<li><a href="http://anneke.cn" target="_blank">卷猫's blog</a></li>
-<li><a href="http://blog.zhouys.ac.cn" target="_blank">東雲研究所</a></li>
-<li><a href="https://coolrc.me/" target="_blank">Just4fun</a></li>
-</ul>
-`;
+let links = genLinks(`
+261days|https://www.261day.com
+蔓舞寻樱的博客|https://emiria.io
+Sonico’s Home|http://blog.supvesonico.moe
+Ciyuan'ai|https://ciyuanai.net
+Hundred Blog|http://txiner.top
+uikoo9的个人网站|http://uikoo9.com
+Yanhao's Blog|http://www.yanhao.site
+ilanyu's Blog|http://blog.lanyus.com
+LWL的自由天空|https://blog.lwl12.com
+河的第三条岸|http://arondight.me
+雨宫千鹤|https://bismarck.moe
+夜雨初霁的小窝|https://www.moew.xyz
+ouzz的博客|http://ouzz.me
+卷猫's blog|http://anneke.cn
+東雲研究所|http://blog.zhouys.ac.cn
+Just4fun|https://coolrc.me
+`);
 
 let about = `
-博主大四(目前正在实习Orz),目前主业是Node相关
+博主大四(目前正在实习ORZ),目前主业是Node相关
 
 目前坐标北京,住在某睡城.
 
-专业三分热度,曾很喜欢Ruby,C++,Scala,酱油Pythonist,偶尔写写前端,当当运维0v0.
+专业三分热度,曾很喜欢Ruby,C++,Scala,酱油Pythonist,偶尔写写前端,当当运维OvO.
 
-Email: i(at)shyling.com
+Email: i@shyling.com(欢迎勾搭)
 `;
 
 export const pages = {
   '/Links': {
-    body: links,
-    title: 'Links'
+    title: 'Links',
+    body: links
   },
   '/About': {
-    body: about,
-    title: 'About'
+    title: 'About',
+    body: about
   },
   404: {
     title: '404 Not Found',
