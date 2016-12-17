@@ -14,6 +14,7 @@
     "axios": "^0.15.2",
     "dateutil": "^0.1.0",
     "es6-promise": "^4.0.5",
+    "fastclick": "^1.0.6",
     "github-markdown-css": "^2.4.1",
     "highlight.js": "^9.8.0",
     "keycode": "^2.1.8",
