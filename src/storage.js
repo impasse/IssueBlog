@@ -1,10 +1,11 @@
 //Prefer use old data and fetch new data concurrent
 const PERFIX = 'ISSUEBLOG_POST';
+const TEST = 'TEST';
 
-function startsWith(str,arg){
-  if(str['startsWith']){
+function startsWith(str, arg) {
+  if (str['startsWith']) {
     return str.startsWith(arg);
-  }else{
+  } else {
     return new RegExp('^' + arg).test(arg);
   }
 }
@@ -30,9 +31,9 @@ class LocalStorage {
   keys(post_only = true) {
     return Object.keys(localStorage).filter(k => {
       if (post_only) {
-        return startsWith(k,PERFIX) && /\d$/.test(k);
+        return startsWith(k, PERFIX) && /\d$/.test(k);
       } else {
-        return startsWith(k,PERFIX);
+        return startsWith(k, PERFIX);
       }
     }).map(k => k.substring(PERFIX.length + 1));
   }
@@ -83,7 +84,15 @@ class MemoryStorage {
 
 function Storage() {
   if (window.localStorage) {
-    return new LocalStorage();
+    //detect if in private mode
+    let storage = new LocalStorage();
+    try {
+      storage.set(TEST, TEST);
+      storage.delete(TEST);
+      return storage;
+    } catch (e) {
+      return new MemoryStorage();
+    }
   } else {
     return new MemoryStorage();
   }
