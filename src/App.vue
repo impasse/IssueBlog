@@ -25,7 +25,7 @@ export default {
     }
   },
   created(){
-    Fastclick.attach(document.body);
+    //Fastclick.attach(document.body);
     window.addEventListener('scroll', ()=> {
       this.update_fab();
     });
