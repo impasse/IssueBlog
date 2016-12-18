@@ -2,11 +2,14 @@ FROM node:6
 
 EXPOSE 80 443
 
-COPY . /srv
-
 WORKDIR /srv
 
-RUN npm i \
-  && npm run build
+COPY package.json .
+
+RUN npm i
+
+COPY . .
+
+RUN npm run build
 
 CMD ["npm","run","serve"]
