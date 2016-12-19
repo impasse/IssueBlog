@@ -34,6 +34,7 @@ ouzz的博客|http://ouzz.me
 卷猫's blog|http://anneke.cn
 東雲研究所|http://blog.zhouys.ac.cn
 Just4fun|https://coolrc.me
+御坂網路司令塔|https://misaka.genderqueer.gq
 `);
 
 let about = `
