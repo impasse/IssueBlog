@@ -44,6 +44,8 @@ let about = `
 
 专业三分热度，曾很喜欢Ruby、C++、Scala，酱油Pythonist，偶尔写写前端，客串一下运维OvO。
 
+玻璃心orz
+
 Email: i@shyling.com(欢迎勾搭)
 `;
 
