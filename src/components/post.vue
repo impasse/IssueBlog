@@ -116,13 +116,14 @@ export default{
       }
     }
   },
-  created(){
-    Post.get(this.$route.params.number)
-      .then(post=>Object.assign(this,post))
-      .catch(e=>{
-        this.message = e.toString();
-        this.snackbar = true;
-      });
+  async created(){
+    try{
+      let post = await Post.get(this.$route.params.number);
+      Object.assign(this,post);
+    }catch(e){
+      this.message = e.toString();
+      this.snackbar = true;
+    }
   },
   watch: {
     title: function(){

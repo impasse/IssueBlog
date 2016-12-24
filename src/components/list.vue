@@ -106,13 +106,14 @@ export default{
       posts:[]
     }
   },
-  created(){
-    Post.all()
-      .then(posts=>this.posts = posts)
-      .catch(e=>{
-        this.message = e.toString();
+  async created(){
+    try{
+      let posts = await Post.all();
+      this.posts = posts;
+    }catch(e){
+      this.message = e.toString();
         this.snackbar = true;
-      });
+    }
   },
   mounted(){
     document.title = site_name;
