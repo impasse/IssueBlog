@@ -28,6 +28,9 @@
   .mu-appbar {
     background-color: $primary_color;
   }
+  .mu-appbar-title>span {
+    cursor: pointer;
+  }
   .tags {
     display: flex;
     flex-wrap: wrap;
@@ -72,6 +75,17 @@ import Utils from '../mixin'
 export default {
   mixins: [Utils],
   name: 'Header',
+  mounted(){
+    document.querySelectorAll('.mu-appbar-title>span')
+      .forEach(title=>{
+        title.addEventListener('click',()=>{ 
+          if(this.drawer_open === true){
+            this.drawer_open = false;
+          }
+          this.goto('/');
+        });
+      });
+  },
   data(){
     return {
       site_name,

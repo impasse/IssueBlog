@@ -7,12 +7,14 @@
           <div @click="read_more(post.number)"><mu-card-title :title="post.title" :subTitle="'Posted at '+ format_date(post.date)"/></div>
           <mu-card-text v-html="marked(init(post.body))" class="markdown-body text">
           </mu-card-text>
-          <div class="tags">
-            <mu-chip v-for="tag in post.tags" :style="tag_color(tag)">{{tag.name}}</mu-chip>
+          <div class="tags_more">
+            <div class="tags">
+              <mu-chip v-for="tag in post.tags" :style="tag_color(tag)">{{tag.name}}</mu-chip>
+            </div>
+            <mu-card-actions class="actions">
+              <mu-raised-button icon="library_books" class="more" label="MORE" secondary @click="read_more(post.number)"/>
+            </mu-card-actions>
           </div>
-          <mu-card-actions class="actions">
-            <mu-raised-button icon="library_books" class="more" label="READ MORE" secondary @click="read_more(post.number)"/>
-          </mu-card-actions>
         </mu-card>
       </mu-col>
     </mu-row>
@@ -51,12 +53,15 @@
       border-bottom: 1px dashed #ccc;
     }
   }
+  .tags_more {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
   .tags {
     & {
+      margin-top: 10px;
       padding-left: 4%;
-      margin:0;
-      right:10px;
-      top: 15px;
       z-index: 101;
     }
     .mu-chip {
@@ -74,11 +79,8 @@
   }
   .actions {
     & {
-      width: 100%;
-      text-align: right;
       padding-right: 4%;
       padding-bottom: 16px;
-      bottom: 0;
     }
     .mu-raised-button-secondary{
       background-color: $secondary_color;
