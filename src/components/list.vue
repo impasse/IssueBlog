@@ -33,9 +33,15 @@
     margin-top: 20px;
   }
   .card {
-    height: 100%;
-    min-height: 250px;
-    border-radius: 5px;
+    & {
+      padding: 20px;
+      border-radius: 5px;
+    }
+    @media screen and (max-width:700px){
+      & {
+        padding: 0;
+      }
+    }
   }
   .mu-card-title{
     cursor: pointer;
@@ -57,17 +63,18 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-left: 16px;
+    margin-right: 16px
   }
   .tags {
     & {
-      margin-top: 10px;
-      padding-left: 4%;
-      z-index: 101;
       flex: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
     }
     .mu-chip {
       & {
-        display: inline-block;
         margin-right: 1px;
       }
       &:hover {
@@ -79,10 +86,6 @@
     margin-bottom: 60px;
   }
   .actions {
-    & {
-      padding-right: 4%;
-      padding-bottom: 16px;
-    }
     .mu-raised-button-secondary{
       background-color: $secondary_color;
     }
