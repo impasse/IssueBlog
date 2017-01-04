@@ -63,6 +63,7 @@
       margin-top: 10px;
       padding-left: 4%;
       z-index: 101;
+      flex: 1;
     }
     .mu-chip {
       & {
