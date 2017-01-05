@@ -78,7 +78,7 @@ export default {
   mounted(){
     document.querySelectorAll('.mu-appbar-title>span')
       .forEach(title=>{
-        title.addEventListener('click',()=>{ 
+        title.addEventListener('click',()=>{
           if(this.drawer_open === true){
             this.drawer_open = false;
           }
@@ -90,7 +90,7 @@ export default {
     return {
       site_name,
       site_description,
-      drawer_open:false,
+      drawer_open: false,
       tags:[]
     }
   },

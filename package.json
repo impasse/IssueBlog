@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "animate.css": "^3.5.2",
-    "axios": "^0.15.3",
     "dateutil": "^0.1.0",
     "es6-promise": "^4.0.5",
     "github-markdown-css": "^2.4.1",
@@ -22,7 +21,8 @@
     "muse-ui": "^2.0.0-alpha.8",
     "roboto-fontface": "^0.6.0",
     "vue": "^2.1.6",
-    "vue-router": "^2.1.1"
+    "vue-router": "^2.1.1",
+    "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.6.0",

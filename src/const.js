@@ -35,6 +35,7 @@ ouzz的博客|http://ouzz.me
 東雲研究所|http://blog.zhouys.ac.cn
 Just4fun|https://coolrc.me
 御坂網路司令塔|https://misaka.genderqueer.gq
+Zhustec's Blog|http://blog.zhustec.me/
 `);
 
 let about = `

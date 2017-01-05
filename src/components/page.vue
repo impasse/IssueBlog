@@ -1,5 +1,5 @@
 <template>
-  <div id="page">
+  <div id="page" @animationend="removeAnim">
     <mu-row>
       <mu-col width="95" tablet="85" desktop="80">
         <mu-paper :zDepth="3">
@@ -60,6 +60,9 @@ import Utils from '../mixin'
         }else{
           Object.assign(this,pages[404]);
         }
+      },
+      removeAnim(){
+        this.$el.classList.remove('animated','bounceInLeft');
       }
     },
     watch:{
@@ -67,6 +70,7 @@ import Utils from '../mixin'
         document.title = this.title + ' - ' + site_name;
       },
       $route:function(){
+        this.$el.classList.add('animated','bounceInLeft');
         this.refresh_page();
       }
     }
