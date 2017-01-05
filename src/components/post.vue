@@ -81,7 +81,6 @@
 </style>
 
 <script>
-import Axios from 'axios'
 import { owner, repo, site_name } from '../const'
 import Utils from '../mixin'
 import { Post } from '../model'
