@@ -12,6 +12,7 @@ html, body {
 
 body {
   background-color: $background_color;
+  -webkit-font-smoothing: antialiased;
 }
 
 .markdown-body img{
