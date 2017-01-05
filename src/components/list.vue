@@ -40,6 +40,7 @@
     @media screen and (max-width:700px){
       & {
         padding: 0;
+        padding-bottom: 10px;
       }
     }
   }
