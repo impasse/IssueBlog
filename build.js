@@ -7,7 +7,7 @@ let { owner, repo } = require('./src/const');
 
 (async function () {
     let posts = (await (await fetch(`https://api.github.com/repos/${owner}/${repo}/issues?filter=created&state=all`)).json())
-        .filter(post => post.state !== 'close')
+        .filter(post => post.state !== 'closed')
         .map(post => {
             return {
                 title: post.title,
