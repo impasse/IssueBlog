@@ -34,6 +34,7 @@
   .tags {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
   }
   .icon {
     & {
@@ -69,7 +70,7 @@
 
 <script>
 import { site_name, site_description } from '../const'
-import Storage from '../storage'
+import { Post } from '../model'
 import Utils from '../mixin'
 
 export default {
@@ -98,13 +99,14 @@ export default {
     goto(path){
       this.$router.push(path);
     },
-    toggle_drawer(){
+    async toggle_drawer(){
       this.drawer_open = !this.drawer_open;
       if(this.tags.length === 0){
-        let s = {}
-        Storage.each(item=>{
-          for(let v of item.tags){
-            s[v.name] = v.color;
+        let s = {};
+        let posts = await Post.all();
+        posts.forEach(post=>{
+          for(let tag of  post.tags){
+            s[tag.name] = tag.color;
           }
         });
         this.tags = Object.keys(s).map(k=>{
