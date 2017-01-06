@@ -34,7 +34,7 @@ export const Post = {
         fetch_time: Date.now()
       };
       Storage.set(post.number, post);
-      return await Post.get(number);
+      return Post.get(number);
     }
   },
   async all() {
@@ -69,7 +69,7 @@ export const Post = {
         Storage.set(data.number, data);
       });
       Storage.set(FETCH_ALL_TIME, Date.now());
-      return await Post.all();
+      return Post.all();
     }
   }
 }
