@@ -37,7 +37,7 @@ let { owner, repo } = require('./src/const');
     |    async all() {
     |        return posts;
     |    }
-    }`.stripMargin();
+    };`.stripMargin();
     await fs.writeFileAsync('./src/model.js', code, { encoding: 'utf-8' });
     require('./build/build.js');
 })()
