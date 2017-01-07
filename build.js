@@ -6,7 +6,7 @@ let fs = require('bluebird').promisifyAll(require('fs'));
 let { owner, repo } = require('./src/const');
 
 (async function () {
-    let posts = (await (await fetch(`https://api.github.com/repos/${owner}/${repo}/issues?filter=created&state=all`)).json())
+    let posts = (await (await fetch(`https://api.github.com/repos/${owner}/${repo}/issues?creator=${owner}&state=all`)).json())
         .filter(post => post.state !== 'closed')
         .map(post => {
             return {
