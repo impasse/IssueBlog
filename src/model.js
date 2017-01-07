@@ -42,7 +42,7 @@ export const Post = {
     if (Date.now() <= (time + Post.timeout)) {
       return Storage.keys().sort((a, b) => b - a).map(Storage.get);
     } else {
-      let res = await fetch(`${Post.perfix}/repos/${owner}/${repo}/issues?filter=created&state=all`, {
+      let res = await fetch(`${Post.perfix}/repos/${owner}/${repo}/issues?creator=${owner}&state=all`, {
         cors: 'include'
       });
 
