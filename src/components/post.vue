@@ -18,7 +18,9 @@
     <mu-row class="row" v-if="!locked">
       <mu-col width="95" tablet="85" desktop="80">
         <mu-paper class="post" :zDepth="3">
-          <div id="comment-box"></div>
+          <div id="comment-box">
+            <duo-shuo domain="zyymoe" :thread="thread"></duo-shuo>
+          </div>
         </mu-paper>
       </mu-col>
     </mu-row>
@@ -84,6 +86,7 @@
 import { owner, repo, site_name } from '../const'
 import Utils from '../mixin'
 import { Post } from '../model'
+import DuoShuo from 'vue-duoshuo'
 
 export default{
   name: 'Post',
@@ -100,19 +103,9 @@ export default{
       message: ''
     }
   },
-  mounted(){
-    if(!this.locked){
-      let el = document.createElement('div');
-      el.setAttribute('data-thread-key', this.$route.params.number);
-      el.setAttribute('data-url', document.location.href);
-      DUOSHUO.EmbedThread(el);
-      let comment_el = document.querySelector('#comment-box');
-      if(comment_el){
-        comment_el.innerHTML = '';
-        if(comment_el.append){
-          comment_el.append(el);
-        }
-      }
+  computed:{
+    thread(){
+      return this.$route.params.number;
     }
   },
   async created(){
@@ -133,6 +126,9 @@ export default{
     close_snackbar(){
       this.snackbar = false;
     }
+  },
+  components: {
+    DuoShuo
   }
 }
 </script>
