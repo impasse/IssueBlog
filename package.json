@@ -19,7 +19,9 @@
     "muse-ui": "^2.0.0-alpha.8",
     "roboto-fontface": "^0.6.0",
     "vue": "^2.1.6",
-    "vue-router": "^2.1.1"
+    "vue-duoshuo": "^1.0.2",
+    "vue-router": "^2.1.1",
+    "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.6.0",
