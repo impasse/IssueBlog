@@ -38,6 +38,7 @@ Just4fun|https://coolrc.me
 御坂網路司令塔|https://misaka.genderqueer.gq
 Zhustec's Blog|http://blog.zhustec.me/
 石樱灯笼的博客|http://blog.catscarlet.com/
+千里冰封|http://ice1000.tech/
 `);
 
 let about = `
