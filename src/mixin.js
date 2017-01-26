@@ -1,25 +1,10 @@
-import marked from 'marked'
 import dateutil from 'dateutil'
-import highlight from 'highlight.js'
-import 'highlight.js/styles/github.css'
+import { marked } from './utils'
 
-marked.setOptions({
-  renderer: new marked.Renderer(),
-  gfm: true,
-  tables: true,
-  breaks: true,
-  pedantic: false,
-  sanitize: false,
-  smartLists: true,
-  smartypants: false,
-  highlight: function (code) {
-    return highlight.highlightAuto(code).value;
-  }
-});
 
 export default {
   methods: {
-    marked: v => marked(v),
+    marked,
     init: v => {
       v = v || '';
       let i = v.indexOf('<!--more-->');

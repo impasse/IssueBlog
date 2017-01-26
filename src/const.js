@@ -4,6 +4,7 @@ import { genLinks } from './utils'
 export const owner = 'lingmm';
 export const repo = 'IssueBlog';
 export const site_name = '泠的博客';
+export const site_url = 'http://shyling.com'
 export const site_description =
   `この光が空を越えて羽ばたいてゆく
 

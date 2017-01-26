@@ -10,6 +10,7 @@ import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import 'github-markdown-css/github-markdown.css'
 import 'animate.css/animate.css'
 import 'assets/style.scss'
+import 'highlight.js/styles/github.css'
 
 import consts from './const'
 import App from './App'
