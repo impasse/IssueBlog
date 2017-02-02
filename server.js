@@ -22,7 +22,6 @@ app.use(function (req, res, next) {
 app.use(express.static(path.join(__dirname + '/dist'), {
     maxAge: 1e3 * 3600 * 24,
     setHeaders: function (res, path, stat) {
-        console.log(path);
         if (path.endsWith('index.html')) {
             res.set('Cache-Control', 'private, max-age=0');
         }
