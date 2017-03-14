@@ -44,7 +44,7 @@ Zhustec's Blog|http://blog.zhustec.me/
 let about = `
 博主大四(目前正在实习ORZ)，目前主要是Node相关
 
-目前坐标北京，住在某睡城。
+目前坐标北京，住在知春里。
 
 专业三分热度，曾很喜欢Ruby、C++、OCaml，酱油Pythonist，偶尔写写前端，客串一下运维OvO。
 
