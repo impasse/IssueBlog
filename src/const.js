@@ -39,6 +39,7 @@ Just4fun|https://coolrc.me
 Zhustec's Blog|http://blog.zhustec.me/
 石樱灯笼的博客|http://blog.catscarlet.com/
 千里冰封|http://ice1000.tech/
+Zelda's Blog|http://itsay.tech/
 `);
 
 let about = `
