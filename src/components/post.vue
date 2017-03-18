@@ -83,11 +83,11 @@ module.exports =
       this.$route.params.number
   created: () ->
     Post.get this.$route.params.number
-      .then (post) =>
-        Object.assign this, post
-      .catch (err) ->
-        this.message = err.toString()
-        this.snackbar = true
+    .then (post) =>
+      Object.assign this, post
+    .catch (err) =>
+      this.message = err.toString()
+      this.snackbar = true
   watch:
     title: () ->
       document.title = "#{this.title} | #{site_name}"

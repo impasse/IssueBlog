@@ -86,8 +86,8 @@ module.exports =
     Post.all()
       .then (posts) =>
         this.posts = posts
-      .catch (err) ->
-        this.message = err.toString
+      .catch (err) =>
+        this.message = err.toString()
         this.snackbar = true
   mounted: () ->
     document.title = site_name

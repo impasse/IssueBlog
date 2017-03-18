@@ -8,7 +8,8 @@ Post =
       cors: 'include'
     .then (res) ->
       res.json()
-        .then (data) ->
+      .then (data) ->
+        if res.status == 200
           title: data.title
           date: data.created_at
           body: data.body
@@ -17,22 +18,27 @@ Post =
           tags: data.labels.map (label) ->
             name: label.name
             color: label.color
+        else
+          throw new Error(data.message)
   all: () ->
     fetch "#{Post.perfix}/repos/#{owner}/#{repo}/issues?creator=#{owner}&state=all",
       cors: 'include'
-    .then (res) ->
+    .then (res) =>
       res.json()
-        .then (data) ->
-          data.filter (single) ->
-            single.state != 'closed'
-          .map (single) ->
-            title: single.title
-            state: single.state
-            number: single.number
-            body: single.body
-            date: single.created_at
-            tags: single.labels.map (label) ->
-              name: label.name
-              color: label.color
+        .then (data) =>
+          if res.status == 200
+            data.filter (single) ->
+              single.state != 'closed'
+            .map (single) ->
+              title: single.title
+              state: single.state
+              number: single.number
+              body: single.body
+              date: single.created_at
+              tags: single.labels.map (label) ->
+                name: label.name
+                color: label.color
+          else
+            throw new Error(data.message)
 
 exports.Post = Post
