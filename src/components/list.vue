@@ -14,117 +14,87 @@
               mu-raised-button(icon="library_books", class="more", label="MORE", secondary, @click="read_more(post.number)")
 </template>
 
-<style lang="scss">
-@import '../assets/variables.scss';
-#content {
-  & {
-    display: flex;
-    flex-direction: column;
-    min-height: calc(100vh - 196px - 64px);
-  }
-  .post:first-child {
-    margin-top: 20px;
-  }
-  .card {
-    & {
-      padding: 20px;
-      border-radius: 5px;
-    }
-    @media screen and (max-width:700px){
-      & {
-        padding: 0;
-        padding-bottom: 10px;
-      }
-    }
-  }
-  .mu-card-title{
-    cursor: pointer;
-    user-select: none;
-  }
-  .mu-card-sub-title {
-    &::before {
-      font-family: "Material Icons";
-      content: "\E916";
-      display: inline-block;
-      vertical-align: top;
-    }
-    & {
-      padding-bottom: 3px;
-      border-bottom: 1px dashed #ccc;
-    }
-  }
-  .tags_more {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-left: 16px;
-    margin-right: 16px
-  }
-  .tags {
-    & {
-      flex: 1;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
-    .mu-chip {
-      & {
-        margin-right: 1px;
-      }
-      &:hover {
-        animation:pulse 1s infinite;
-      }
-    }
-  }
-  .text {
-    margin-bottom: 60px;
-  }
-  .actions {
-    .mu-raised-button-secondary{
-      background-color: $secondary_color;
-    }
-  }
-  .row {
-    justify-content: center;
-  }
-}
+<style lang="stylus">
+@import '../assets/variables'
+
+#content
+  &
+    display flex
+    flex-direction column
+    min-height calc(100vh - 196px - 64px)
+  .post:first-child
+    margin-top 20px
+  .card
+    &
+      padding 20px
+      border-radius 5px
+    @media screen and (max-width: 700px)
+      &
+        padding: 0
+        padding-bottom 10px
+  .mu-card-title
+    cursor pointer
+    user-select none
+  .mu-card-sub-title
+    &::before
+      font-family "Material Icons"
+      content "\E916"
+      display inline-block
+      vertical-align top
+    &
+      padding-bottom 3px
+      border-bottom 1px dashed #ccc
+  .tags_more
+    display flex
+    flex-direction row
+    justify-content space-between
+    margin-left 16px
+    margin-right 16p
+  .tags
+    &
+      flex 1
+      display flex
+      flex-direction row
+      align-items center
+    .mu-chip
+      &
+        margin-right 1px
+      &:hover
+        animation pulse 1s infinite
+  .text
+    margin-bottom 60px
+  .actions
+    .mu-raised-button-secondary
+      background-color $secondary_color
+  .row
+      justify-content: center
 </style>
 
-<script>
-import { owner, repo, site_name } from '../const'
-import Utils from '../mixin'
-import { Post } from '../model'
+<script lang="coffee">
+{ owner, repo, site_name } = require '../const'
+Utils = require '../mixin'
+{ Post } = require '../model'
 
-export default{
-  name: 'List',
-  mixins: [Utils],
-  data(){
-    return {
-      snackbar: false,
-      message: '',
-      posts:[]
-    }
-  },
-  async created(){
-    try{
-      let posts = await Post.all();
-      this.posts = posts;
-    }catch(e){
-      this.message = e.toString();
-        this.snackbar = true;
-    }
-  },
-  mounted(){
-    document.title = site_name;
-  },
-  methods: {
-    read_more(number){
-      this.$router.push('/post/' + number);
-      window.scrollTo(0,0);
-    },
-    close_snackbar(){
-      this.snackbar = false;
-    }
-  }
-}
+module.exports =
+  name: 'List'
+  mixins: [ Utils ]
+  data: () ->
+    snackbar: false
+    message: '',
+    posts: []
+  created: () ->
+    Post.all()
+      .then (posts) =>
+        this.posts = posts
+      .catch (err) ->
+        this.message = err.toString
+        this.snackbar = true
+  mounted: () ->
+    document.title = site_name
+  methods:
+    read_more: (number) ->
+       this.$router.push '/post/' + number
+       window.scrollTo 0, 0
+    close_snackbar: () ->
+      this.snackbar = false
 </script>

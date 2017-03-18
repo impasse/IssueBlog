@@ -9,7 +9,7 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: './src/main.coffee'
   },
   output: {
     path: config.build.assetsRoot,
@@ -19,7 +19,7 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.coffee', '.vue', '.json'],
     alias: {
       '@': resolve('src'),
     }
@@ -35,6 +35,10 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test')]
+      },
+      {
+        test: /\.coffee$/,
+        loader: 'coffee-loader'
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

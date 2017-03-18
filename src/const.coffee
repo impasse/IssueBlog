@@ -1,11 +1,10 @@
-import { genLinks } from './utils'
+{ genLinks } = require './utils'
 
-
-export const owner = 'lingmm';
-export const repo = 'IssueBlog';
-export const site_name = '泠的博客';
-export const site_description =
-  `この光が空を越えて羽ばたいてゆく
+exports.owner = 'lingmm'
+exports.repo = 'IssueBlog'
+exports.site_name = '泠的博客'
+exports.site_description = '''
+この光が空を越えて羽ばたいてゆく
 
 そんな歌を届けたい
 
@@ -15,9 +14,10 @@ export const site_description =
 
 君の心の片隅で
 
-輝く星になりたい`;
+輝く星になりたい
+''';
 
-let links = genLinks(`
+links = genLinks '''
 261days|https://www.261day.com
 蔓舞寻樱的博客|https://emiria.io
 Sonico’s Home|http://blog.supvesonico.moe
@@ -39,9 +39,9 @@ Zhustec's Blog|http://blog.zhustec.me/
 石樱灯笼的博客|http://blog.catscarlet.com/
 千里冰封|http://ice1000.tech/
 Zelda's Blog|http://itsay.tech/
-`);
+'''
 
-let about = `
+about = '''
 博主大四(目前正在实习ORZ)，目前主要是Node相关
 
 坐标北京，住在知春里。
@@ -51,19 +51,16 @@ let about = `
 玻璃心orz
 
 Email: i@shyling.com(欢迎勾搭)
-`;
+'''
 
-export const pages = {
-  '/Links': {
-    title: 'Links',
+
+exports.pages = 
+  '/Links':
+    title: 'Links'
     body: links
-  },
-  '/About': {
-    title: 'About',
+  '/About':
+    title: 'About'
     body: about
-  },
-  404: {
-    title: '404 Not Found',
+  404:
+    title: '404 Not Found'
     body: '### Torromow will be a sunny day'
-  }
-};
