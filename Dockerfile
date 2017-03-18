@@ -1,4 +1,4 @@
-FROM node:6
+FROM node:latest
 
 EXPOSE 80 443
 
