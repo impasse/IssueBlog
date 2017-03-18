@@ -1,4 +1,4 @@
-import 'es6-promise/auto'
+import 'babel-polyfill'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
@@ -9,7 +9,7 @@ import 'muse-ui/dist/muse-ui.css'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import 'github-markdown-css/github-markdown.css'
 import 'animate.css/animate.css'
-import 'assets/style.scss'
+import './assets/style.scss'
 
 import consts from './const'
 import App from './App'

@@ -1,14 +1,11 @@
-<template>
-  <div id="app">
-    <app-header/>
-    <transition enter-active-class="animated bounceInLeft">
-      <router-view/>
-    </transition>
-    <app-footer/>
-    <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
-      <mu-float-button :icon="fab" v-show="show_fab" class="float-button" secondary @click="click_fab"/>
-    </transition>
-  </div>
+<template lang="pug">
+  div#app
+    app-header
+    transition(enter-active-class="animated bounceInLeft")
+      router-view
+    app-footer
+    transition(enter-active-class="animated fadeIn", leave-active-class="animated fadeOut")
+      mu-float-button(:icon="fab", v-show="show_fab", class="float-button", secondary, @click="click_fab")
 </template>
 
 <script>

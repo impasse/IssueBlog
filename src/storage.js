@@ -1,22 +1,6 @@
 const PERFIX = 'ISSUEBLOG_POST';
 const TEST = 'TEST';
 
-//maybe can inject to String prototype,don't like
-function genStartsWith() {
-  let support = String.prototype.startsWith !== undefined;
-  if (support) {
-    return function (str, arg) {
-      return str.startsWith(arg);
-    }
-  } else {
-    return function (str, arg) {
-      return str.substr(0, arg.length) === arg;
-    }
-  }
-}
-
-let startsWith = genStartsWith();
-
 let LocalStorage = {
   get: k => JSON.parse(localStorage.getItem(`${PERFIX}_${k}`)),
   set: (k, v) => localStorage.setItem(`${PERFIX}_${k}`, JSON.stringify(v)),
@@ -24,9 +8,9 @@ let LocalStorage = {
   destory: () => LocalStorage.keys(post_only = false).forEach(LocalStorage.delete),
   keys: (post_only = true) => Object.keys(localStorage).filter(k => {
     if (post_only) {
-      return startsWith(k, PERFIX) && /\d$/.test(k);
+      return k.startsWith(PERFIX) && /\d$/.test(k);
     } else {
-      return startsWith(k, PERFIX);
+      return k.startsWith(PERFIX);
     }
   }).map(k => k.substring(PERFIX.length + 1)),
   each: func => {

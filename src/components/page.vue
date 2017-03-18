@@ -1,14 +1,10 @@
-<template>
-  <div id="page" @animationend="removeAnim">
-    <mu-row>
-      <mu-col width="95" tablet="85" desktop="80">
-        <mu-paper :zDepth="3">
-          <div class="title" v-show="title.length!==0">{{title}}</div>
-          <div class="body" v-html="marked(body)"></div>
-        </mu-paper>
-      </mu-col>
-    </mu-row>
-  </div>
+<template lang="pug">
+  div#page(@animationend="removeAnim")
+    mu-row
+      mu-col(width="95", tablet="85", desktop="80")
+        mu-paper(:zDepth="3")
+          div.title(v-show="title.length!==0") {{title}}
+          div.body(v-html="marked(body)")
 </template>
 
 <style lang="scss">

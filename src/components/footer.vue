@@ -1,8 +1,9 @@
-<template>
-    <div id="footer">
-          <div class="copyright">shyling</div>
-          <div class="link"><a href="https://github.com/lingmm" target="__blank"><img src="../assets/github-logo.png" alt="Github"/></a></div>
-    </div>
+<template lang="pug">
+  div#footer
+    div.copyright shyling
+    div.link
+      a(href="https://github.com/lingmm", target="__blank")
+        img(src="../assets/github-logo.png", alt="Github")
 </template>
 
 <style lang="scss">

@@ -1,30 +1,19 @@
-<template>
-  <div id="post">
-    <mu-snackbar v-if="snackbar" :message="message" action="Close" @actionClick="close_snackbar" @close="close_snackbar"/>
-    <mu-row>
-      <mu-col width="95" tablet="85" desktop="80">
-        <mu-paper class="post" :zDepth="3">
-          <div class="title">{{title}}</div>
-          <div class="date">Posted at {{format_date(date)}}</div>
-          <div class="body markdown-body" v-html="marked(body)"></div>
-          <div class="tags">
-            <mu-chip v-for="tag in tags" :style="tag_color(tag)">
-              {{tag.name}}
-            </mu-chip>
-          </div>
-        </mu-paper>
-      </mu-col>
-    </mu-row>
-    <mu-row class="row" v-if="!locked">
-      <mu-col width="95" tablet="85" desktop="80">
-        <mu-paper class="post" :zDepth="3">
-          <div id="comment-box">
-            <duo-shuo domain="zyymoe" :thread="thread"></duo-shuo>
-          </div>
-        </mu-paper>
-      </mu-col>
-    </mu-row>
-  </div>
+<template lang="pug">
+  div#post
+    mu-snackbar(v-if="snackbar", :message="message", action="Close", @actionClick="close_snackbar", @close="close_snackbar")
+    mu-row
+      mu-col(width="95", tablet="85", desktop="80")
+        mu-paper.post(:zDepth="3")
+          div.title {{title}}
+          div.date Posted at {{format_date(date)}}
+          div.body.markdown-body(v-html="marked(body)")
+          div.tags
+            mu-chip(v-for="tag in tags", :style="tag_color(tag)") {{tag.name}}
+    mu-row.row(v-if="!locked")
+      mu-col(width="95", tablet="85", desktop="80")
+        mu-paper.post(:zDepth="3")
+          div#comment-box
+            duo-shuo(domain="zyymoe", :thread="thread")
 </template>
 
 <style lang="scss">

@@ -1,25 +1,18 @@
-<template>
-  <div id="header">
-    <mu-appbar :title="site_name" @click="goto('/')">
-      <mu-icon-button icon="menu" slot="left" @click="toggle_drawer"/>
-      <mu-icon-menu icon="more_vert" slot="right">
-        <mu-menu-item title="Home" leftIcon="home" @click="goto('/')"/>
-        <mu-menu-item title="Links" leftIcon="link" @click="goto('/Links')"/>
-        <mu-menu-item title="About" leftIcon="person_pic" @click="goto('/About')"/>
-      </mu-icon-menu>
-    </mu-appbar>
-    <mu-drawer :open="drawer_open" @close="toggle_drawer" :docked="false">
-      <mu-appbar :title="site_name"/>
-      <div class="icon">
-        <img src="//q.qlogo.cn/qqapp/100229475/2229ECE6C6AA666326E6E67A8B541781/160"/>
-      </div>
-      <mu-content-block v-html="marked(site_description)" style="text-align:center">
-      </mu-content-block>
-      <mu-content-block class="tags">
-        <mu-chip v-for="tag in tags" :style="tag_color(tag)">{{tag.name}}</mu-chip>
-      </mu-content-block>
-    </mu-drawer>
-  </div>
+<template lang="pug">
+  div#header
+    mu-appbar(:title="site_name", @click="goto('/')")
+      mu-icon-button( icon="menu", slot="left", @click="toggle_drawer")
+      mu-icon-menu(icon="more_vert", slot="right")
+        mu-menu-item(title="Home", leftIcon="home", @click="goto('/')")
+        mu-menu-item(title="Links", leftIcon="link", @click="goto('/Links')")
+        mu-menu-item(title="About", leftIcon="person_pic", @click="goto('/About')")
+    mu-drawer(:open="drawer_open", @close="toggle_drawer", :docked="false")
+      mu-appbar(:title="site_name")
+      div.icon
+        img(src="//q.qlogo.cn/qqapp/100229475/2229ECE6C6AA666326E6E67A8B541781/160")
+      mu-content-block(v-html="marked(site_description)", style="text-align:center")
+      mu-content-block.tags
+        mu-chip(v-for="tag in tags", :style="tag_color(tag)") {{tag.name}}
 </template>
 
 <style lang="scss">
