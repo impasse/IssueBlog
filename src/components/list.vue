@@ -9,7 +9,7 @@
           mu-card-text(v-html="marked(init(post.body))", class="markdown-body text")
           div.tags_more
             div.tags
-              mu-chip(v-for="tag in post.tags", :style="tag_color(tag)") {{tag.name}})
+              mu-chip(v-for="tag in post.tags", :style="tag_color(tag)") {{tag.name}}
             mu-card-actions.actions
               mu-raised-button(icon="library_books", class="more", label="MORE", secondary, @click="read_more(post.number)")
 </template>
