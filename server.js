@@ -20,7 +20,7 @@ app.use(function (req, res, next) {
 });
 
 app.use(express.static(path.join(__dirname + '/dist'), {
-    maxAge: 1e3 * 3600 * 24,
+    maxAge: 1e3 * 3600 * 24 * 30,
     setHeaders: function (res, path, stat) {
         if (path.endsWith('index.html')) {
             res.set('Cache-Control', 'private, max-age=0');
