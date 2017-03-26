@@ -132,10 +132,11 @@ export default {
     async login() {
       const code = await loginByGithub();
       await this.$store.dispatch('exchangeToken', code);
-      await await Promise.all([
+      await Promise.all([
         this.$store.dispatch('fetchPost', this.id),
         this.$store.dispatch('fetchComments', this.id)
       ]);
+      this.snackbar = false;
     },
   },
   components: {

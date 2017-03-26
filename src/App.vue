@@ -23,7 +23,7 @@ export default {
     (window.addEventListener || window.attachEvent)('scroll', event =>
       this.update_fab()
     );
-    this.$store.dispatch('initLogin');
+    return this.$store.dispatch('initLogin');
   },
   watch: {
     $route: function () {

@@ -105,6 +105,7 @@ export default {
       const code = await loginByGithub();
       await this.$store.dispatch('exchangeToken', code);
       await this.$store.dispatch('fetchList');
+      this.snackbar = false;
     },
     read_more(number) {
       this.$router.push(`/post/${number}`);

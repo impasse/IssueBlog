@@ -56,17 +56,17 @@ export default {
   methods: {
     async login() {
       const code = await loginByGithub();
-      this.$store.dispatch('exchangeToken', code);
+      return this.$store.dispatch('exchangeToken', code);
     },
     async logout() {
-      this.$store.dispatch('logout');
+      return this.$store.dispatch('logout');
     },
     async submit() {
       await Comment.create(this.$route.params.number, this.content);
       this.message = '发布成功';
       this.showToast = true;
       this.content = '';
-      this.$store.dispatch('fetchComments', this.$route.params.number);
+      return this.$store.dispatch('fetchComments', this.$route.params.number);
     },
     hideToast() {
       this.showToast = false;
