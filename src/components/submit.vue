@@ -65,6 +65,7 @@ export default {
       await Comment.create(this.$route.params.number, this.content);
       this.message = '发布成功';
       this.showToast = true;
+      this.content = '';
       this.$store.dispatch('fetchComments', this.$route.params.number);
     },
     hideToast() {
