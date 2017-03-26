@@ -50,40 +50,56 @@
       animation pulse 1s infinite
 </style>
 
-<script lang="coffee">
-{ site_name, site_description } = require '../const'
-{ Post } = require '../model'
-Utils = require '../mixin'
+<script>
+import { site_name, site_description } from '../const'
+import { Post } from '../model'
+import Util from '../mixin'
 
-module.exports =
-  name: 'Header'
-  mixins: [ Utils ]
-  mounted: () ->
-    document.querySelectorAll '.mu-appbar-title>span'
-    .forEach (title) =>
-      title.addEventListener 'click', () =>
-        if this.drawer_open
-          this.drawer_open = false
-        this.goto '/'
-  data: () ->
-    site_name: site_name
-    site_description: site_description
-    drawer_open: false
-    tags: []
-  methods:
-    goto: (path) ->
-      this.$router.push path
-    toggle_drawer: () ->
-      this.drawer_open = !this.drawer_open
-      if this.tags.length == 0
-        store = {}
-        Post.all()
-        .then (posts) =>
-          posts.forEach (post) ->
-            for own index, tag of post.tags
-              store[tag.name] = tag.color
-          this.tags = Object.entries store
-            .map (kv) ->
-              name: kv[0]
-              color: kv[1]
+export default {
+  name: 'Header',
+  mixins: [Util],
+  mounted() {
+    document.querySelectorAll('.mu-appbar-title>span')
+      .forEach(title =>
+        title.addEventListener('click', () => {
+          if (this.drawer_open) {
+            this.drawer_open = false;
+          }
+          this.goto('/');
+        })
+      );
+  },
+  data() {
+    return {
+      site_name: site_name,
+      site_description: site_description,
+      drawer_open: false,
+      tags: []
+    };
+  },
+  methods: {
+    goto(path) {
+      this.$router.push(path);
+    },
+    async toggle_drawer() {
+      this.drawer_open = !this.drawer_open;
+      if (this.tags.length == 0) {
+        const store = {}
+        const posts = await Post.all();
+        posts.forEach(post => {
+          for (const tag of post.tags) {
+            store[tag.name] = tag.color;
+          }
+        });
+        this.tags = Object.entries(store)
+          .map(([name, color]) => {
+            return {
+              name,
+              color
+            };
+          });
+      }
+    }
+  }
+};
 </script>

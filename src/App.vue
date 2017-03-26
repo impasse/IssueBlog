@@ -8,34 +8,47 @@
       mu-float-button(:icon="fab", v-show="show_fab", class="float-button", secondary, @click="click_fab")
 </template>
 
-<script lang="coffee">
-AppHeader = require './components/header.vue'
-AppFooter = require './components/footer.vue'
+<script>
+import { User } from './model'
 
-module.exports = 
-  name: 'App'
-  data: () ->
-    fab: 'home'
-    show_fab: false
-  created: () ->
-    window.addEventListener 'scroll', (event) =>
+export default {
+  name: 'App',
+  data() {
+    return {
+      fab: 'home',
+      show_fab: false
+    };
+  },
+  async created() {
+    (window.addEventListener || window.attachEvent)('scroll', event =>
       this.update_fab()
-  watch:
-    $route: () ->
-      this.update_fab()
-  methods:
-    update_fab: () ->
-      pos = window.scrollY ?= document.documentElement.scrollTop
-      this.fab = if pos <= 300 then 'home' else 'keyboard_arrow_up'
+    );
+    this.$store.dispatch('initLogin');
+  },
+  watch: {
+    $route: function () {
+      this.update_fab();
+    }
+  },
+  methods: {
+    update_fab() {
+      const pos = window.scrollY ? window.scrollY : document.documentElement.scrollTop
+      this.fab = pos <= 300 ? 'home' : 'keyboard_arrow_up';
       this.show_fab = !(this.$route.name == 'home' && this.fab == 'home')
-    click_fab: () ->
-      if this.fab == 'home'
-        this.$router.push '/'
-      else
-        window.scrollTo 0, 0
-  components:
-    AppHeader: AppHeader
-    AppFooter: AppFooter
+    },
+    click_fab() {
+      if (this.fab == 'home') {
+        this.$router.push('/');
+      } else {
+        window.scrollTo(0, 0);
+      }
+    }
+  },
+  components: {
+    AppHeader: require('./components/header.vue'),
+    AppFooter: require('./components/footer.vue')
+  }
+};
 </script>
 
 <style lang="stylus">

@@ -16,7 +16,7 @@
     height: 96px
     background-color $primary_color
     display flex
-    flex-direction row-reverse
+    flex-flow row-reverse nowrap
     align-items center
     flex-wrap nowrap
     color rgba(255,255,255,.87)
@@ -43,7 +43,8 @@
       justify-content center
 </style>
 
-<script lang="coffee">
-module.exports = 
+<script>
+export default {
   name: 'Footer'
+};
 </script>

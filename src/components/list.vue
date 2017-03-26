@@ -1,6 +1,6 @@
 <template lang="pug">
   div#content
-    mu-snackbar(v-if="snackbar", :message="message", action="close", @actionClick="close_snackbar", @close="close_snackbar")
+    mu-snackbar(v-if="snackbar", :message="message", action="登陆", @actionClick="login", @close="close_snackbar")
     mu-row(v-for="post in posts")
       mu-col(width="95", tablet="85", desktop="80", class="post")
         mu-card.card
@@ -20,7 +20,7 @@
 #content
   &
     display flex
-    flex-direction column
+    flex-flow column nowrap
     min-height calc(100vh - 196px - 64px)
   .post:first-child
     margin-top 20px
@@ -46,7 +46,7 @@
       border-bottom 1px dashed #ccc
   .tags_more
     display flex
-    flex-direction row
+    flex-flow row nowrap
     justify-content space-between
     margin-left 16px
     margin-right 16p
@@ -54,7 +54,7 @@
     &
       flex 1
       display flex
-      flex-direction row
+      flex-flow row nowrap
       align-items center
     .mu-chip
       &
@@ -70,31 +70,49 @@
       justify-content: center
 </style>
 
-<script lang="coffee">
-{ owner, repo, site_name } = require '../const'
-Utils = require '../mixin'
-{ Post } = require '../model'
+<script>
+import { mapState } from 'vuex'
+import { owner, repo, site_name } from '../const'
+import Util from '../mixin'
+import { Post } from '../model'
+import { loginByGithub } from '../util'
 
-module.exports =
-  name: 'List'
-  mixins: [ Utils ]
-  data: () ->
-    snackbar: false
-    message: '',
-    posts: []
-  created: () ->
-    Post.all()
-      .then (posts) =>
-        this.posts = posts
-      .catch (err) =>
-        this.message = err.toString()
-        this.snackbar = true
-  mounted: () ->
-    document.title = site_name
-  methods:
-    read_more: (number) ->
-       this.$router.push '/post/' + number
-       window.scrollTo 0, 0
-    close_snackbar: () ->
-      this.snackbar = false
+export default {
+  name: 'List',
+  mixins: [Util],
+  data() {
+    return {
+      snackbar: false,
+      message: ''
+    };
+  },
+  computed: mapState({
+    posts: 'current_list'
+  }),
+  async created() {
+    try {
+      await this.$store.dispatch('fetchList');
+    } catch (e) {
+      this.message = '加载出错，你可以尝试登陆后重试';
+      this.snackbar = true;
+    }
+  },
+  mounted() {
+    document.title = site_name;
+  },
+  methods: {
+    async login() {
+      const code = await loginByGithub();
+      await this.$store.dispatch('exchangeToken', code);
+      await this.$store.dispatch('fetchList');
+    },
+    read_more(number) {
+      this.$router.push(`/post/${number}`);
+      window.scrollTo(0, 0);
+    },
+    close_snackbar() {
+      this.snackbar = false;
+    }
+  }
+};
 </script>

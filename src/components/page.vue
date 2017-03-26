@@ -12,7 +12,7 @@
   &
     min-height calc(100vh - 260px)
     display flex
-    flex-direction column
+    flex-flow column nowrap
   .row
     &
       justify-content center
@@ -26,31 +26,43 @@
     padding 30px
 </style>
 
-<script lang="coffee">
-{ pages, site_name } = require '../const'
-Utils = require '../mixin'
+<script>
+import { pages, site_name } from '../const'
+import Util from '../mixin'
 
-module.exports =
-  name: 'Page'
-  mixins: [ Utils ]
-  data: () ->
-    body: 'Connecting to misaka network...'
-    title: 'Loading...'
-  mounted: ()->
-    this.refresh_page()
-  methods:
-    refresh_page: () ->
-      current = pages[this.$route.path]
-      if current
-        Object.assign this, current
-      else
-        Object.assign this, pages[404]
-    removeAnim: () ->
-      this.$el.classList.remove 'animated', 'bounceInLeft'
-  watch:
-    title: () ->
-      document.title = "#{this.title} - #{site_name}"
-    $route: () ->
-      this.$el.classList.add('animated','bounceInLeft')
-      this.refresh_page()
+export default {
+  name: 'Page',
+  mixins: [Util],
+  data() {
+    return {
+      body: 'Connecting to misaka network...',
+      title: 'Loading...'
+    };
+  },
+  mounted() {
+    this.refresh_page();
+  },
+  methods: {
+    refresh_page() {
+      const current = pages[this.$route.path]
+      if (current) {
+        Object.assign(this, current);
+      } else {
+        Object.assign(this, pages[404]);
+      }
+    },
+    removeAnim() {
+      this.$el.classList.remove('animated', 'bounceInLeft');
+    }
+  },
+  watch: {
+    title() {
+      document.title = `${this.title} - ${site_name}`;
+    },
+    $route() {
+      this.$el.classList.add('animated', 'bounceInLeft');
+      this.refresh_page();
+    }
+  }
+};
 </script>
