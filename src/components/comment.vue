@@ -6,7 +6,7 @@ div.comment
       a(:href="`https://github.com/${name}`") {{name}}
   div.right
     div.time {{date}}
-    div.content {{body}}
+    div.content(v-html="marked(body)")
 </template>
 
 
@@ -25,6 +25,8 @@ div.comment
       margin-left -30px
       width 200px
       text-align center
+      @media screen and (max-width: 700px)
+        width 150px
     .avatar
       width 90px
       height 90px
@@ -46,12 +48,18 @@ div.comment
 
 <script>
 import moment from 'moment'
+import marked from 'marked'
 
 export default {
   props: ['name', 'avatar', 'body', 'time'],
   computed: {
     date() {
       return moment(this.time).format('YYYY-M-D HH:mm:ss');
+    }
+  },
+  methods: {
+    marked(v) {
+      return marked(v || '', { sanitize: true });
     }
   }
 };
