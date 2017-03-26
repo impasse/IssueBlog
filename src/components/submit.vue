@@ -7,7 +7,7 @@ div#submit
     span(v-else).
       Hi {{userName}} #[span.logout(@click="logout") (注销)]，欢迎评论哦
   mu-text-field(hintText="回复内容(必填)", :multiLine="true", :rows="10", :fullWidth="true", v-model="content")
-  mu-raised-button(label="提交", @click="submit", :disabled="!userName", secondary)
+  mu-raised-button(label="提交", @click="submit", :disabled="!userName || !content", secondary)
 </template>
 
 
