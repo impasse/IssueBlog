@@ -5,7 +5,7 @@ div#submit
     span(v-if="!userName").
       #[span.login(@click="login") 登陆]后就可以评论了呢
     span(v-else).
-      Hi {{userName}} #[span.logout(@click="logout") (注销)]，欢迎评论哦
+      Hi {{userName}} #[span.logout(@click="logout") (登出)]，欢迎评论哦
   mu-text-field(hintText="回复内容(必填)", :multiLine="true", :rows="10", :fullWidth="true", v-model="content")
   mu-raised-button(label="提交", @click="submit", :disabled="!userName || !content", secondary)
 </template>
