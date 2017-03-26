@@ -51,7 +51,7 @@ export default {
   props: ['name', 'avatar', 'body', 'time'],
   computed: {
     date() {
-      return moment(this.time).format('YYYY-M-D H:m:s');
+      return moment(this.time).format('YYYY-M-D HH:mm:ss');
     }
   }
 };
