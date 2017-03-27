@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import jump from 'jump.js'
 import { User } from './model'
 
 export default {
@@ -40,7 +41,7 @@ export default {
       if (this.fab == 'home') {
         this.$router.push('/');
       } else {
-        window.scrollTo(0, 0);
+        jump('#header');
       }
     }
   },

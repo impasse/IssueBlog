@@ -72,6 +72,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import jump from 'jump.js'
 import { owner, repo, site_name } from '../const'
 import Util from '../mixin'
 import { Post } from '../model'
@@ -109,7 +110,7 @@ export default {
     },
     read_more(number) {
       this.$router.push(`/post/${number}`);
-      window.scrollTo(0, 0);
+      jump('#header');
     },
     close_snackbar() {
       this.snackbar = false;
