@@ -13,7 +13,6 @@
     "animate.css": "^3.5.2",
     "babel-polyfill": "^6.23.0",
     "bluebird": "^3.5.0",
-    "dateutil": "^0.1.0",
     "github-markdown-css": "^2.4.1",
     "highlight.js": "^9.9.0",
     "jump.js": "^1.0.2",
