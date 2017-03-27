@@ -1,7 +1,7 @@
 <template lang="pug">
   div#app
     app-header
-    transition(enter-active-class="animated fadeOut")
+    transition(leave-active-class="animated fadeOut")
       router-view
     app-footer
     transition(enter-active-class="animated fadeIn", leave-active-class="animated fadeOut")
