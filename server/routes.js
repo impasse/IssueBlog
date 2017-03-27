@@ -4,15 +4,15 @@ const env = require('process').env;
 const router = require('koa-router')();
 const send = require('koa-send');
 const request = require('request-promise');
+const { client_id, client_secret } = require('./config');
 
-const client_id = env.CLIENT_ID;
-const client_secret = env.CLIENT_SECRET;
-
-router.get('/', async ctx => {
+async function fallback(ctx) {
     await send(ctx, 'dist/index.html', {
         maxAge: 0
     });
-});
+}
+
+router.get('/', fallback);
 
 router.get('/api/authorize', async ctx => {
     const query = {
@@ -54,5 +54,7 @@ router.post('/api/logout', async ctx =>{
     delete ctx.session.token;
     ctx.status = 200;
 });
+
+router.get('*', fallback);
 
 module.exports = [router.routes(), router.allowedMethods()];

@@ -38,7 +38,8 @@ const routes = [
 const store = new Vuex.Store(vuex);
 
 const router = new VueRouter({
-    routes
+    routes,
+    mode: 'history'
 });
 
 new Vue({
