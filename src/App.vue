@@ -1,8 +1,7 @@
 <template lang="pug">
   div#app
     app-header
-    transition(leave-active-class="animated fadeOut")
-      router-view
+    router-view
     app-footer
     transition(enter-active-class="animated fadeIn", leave-active-class="animated fadeOut")
       mu-float-button(:icon="fab", v-show="show_fab", class="float-button", secondary, @click="click_fab")
