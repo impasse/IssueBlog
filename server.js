@@ -3,9 +3,9 @@ const http = require('http');
 const https = require('https');
 const fs = require('fs');
 
-const app = require('./server/app');
+const app = require('./server/app').callback();
 
-http.createServer(app.callback()).listen(80);
+http.createServer(app).listen(80);
 
 const key = path.join(__dirname, '/https', 'ssl.key');
 const cert = path.join(__dirname, '/https', 'ssl.crt');
@@ -15,6 +15,6 @@ if (fs.existsSync(key) && fs.existsSync(cert)) {
         key: fs.readFileSync(key),
         cert: fs.readFileSync(cert)
     },
-        app.callback()
+        app
     ).listen(443);
 }
