@@ -28,7 +28,10 @@ router.get('/api/authorize', async ctx => {
         allow_signup: true,
         state: crypto.pseudoRandomBytes(3).toString('hex')
     };
-    ctx.body = `<script>document.location.href= 'https://github.com/login/oauth/authorize?${qs.stringify(query)}'</script>`;
+    ctx.body = `<script>
+    document.write('跳转中...');
+    document.location.href= 'https://github.com/login/oauth/authorize?${qs.stringify(query)}';
+    </script>`;
 });
 
 router.get('/api/code', async ctx => {
