@@ -1,10 +1,10 @@
 <template lang="pug">
-  div#page(@animationend="removeAnim")
+  #page(@animationend.stop="removeAnim")
     mu-row
       mu-col(width="95", tablet="85", desktop="80")
         mu-paper(:zDepth="3")
-          div.title(v-show="title.length!==0") {{title}}
-          div.body(v-html="marked(body)")
+          .title(v-show="title.length!==0") {{title}}
+          .body(v-html="marked(body)")
 </template>
 
 <style lang="stylus">

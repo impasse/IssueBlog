@@ -1,25 +1,25 @@
 <template lang="pug">
-  div#post
+  #post
     mu-snackbar(v-if="snackbar", :message="message", action="登陆", @actionClick="login", @close="close_snackbar")
     mu-row
       mu-col(width="95", tablet="85", desktop="80")
         mu-paper.post(:zDepth="3")
-          div.title {{title}}
-          div.date Posted at {{format_date(date)}}
-          div.body.markdown-body(v-html="marked(body)")
-          div.tags
+          .title {{title}}
+          .date Posted at {{format_date(date)}}
+          .body.markdown-body(v-html="marked(body)")
+          .tags
             mu-chip(v-for="tag in tags", :key="tag.name", :style="tag_color(tag)") {{tag.name}}
     mu-row.row(v-if="state ==='open'")
       mu-col(width="95", tablet="85", desktop="80")
         mu-paper.post(:zDepth="3")
-          div#comment-box
-            div#title 评论列表
+          #comment-box
+            #title 评论列表
             div(v-if="comments.length")
               div(v-for="comment in comments")
-                comment(:name="comment.user.login", :avatar="comment.user.avatar_url", :body="comment.body", :time="comment.updated_at")
+                comment(@reply="reply", :name="comment.user.login", :avatar="comment.user.avatar_url", :body="comment.body", :time="comment.updated_at")
             div(v-else)
-              div#no-comment 暂时没有评论呢，快留一个吧
-          submit
+              #no-comment 暂时没有评论呢，快留一个吧
+          submit(ref="submit")
 </template>
 
 <style lang="stylus">
@@ -67,6 +67,7 @@
     &
       display: flex
       flex-flow column nowrap
+      margin-bottom 30px
     #title
       font-size 24px
       color $primary_text_color
@@ -141,6 +142,9 @@ export default {
       ]);
       this.snackbar = false;
     },
+    reply(name) {
+      this.$refs.submit.$emit('reply', name);
+    }
   },
   components: {
     Comment: require('./comment'),

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div#content
+  #content
     mu-snackbar(v-if="snackbar", :message="message", action="登陆", @actionClick="login", @close="close_snackbar")
     mu-row(v-for="post in posts")
       mu-col(width="95", tablet="85", desktop="80", class="post")
@@ -7,8 +7,8 @@
           div(@click="read_more(post.number)")
             mu-card-title(:title="post.title", :subTitle="'Posted at '+ format_date(post.date)")
           mu-card-text(v-html="marked(init(post.body))", class="markdown-body text")
-          div.tags_more
-            div.tags
+          .tags_more
+            .tags
               mu-chip(v-for="tag in post.tags", :style="tag_color(tag)") {{tag.name}}
             mu-card-actions.actions
               mu-raised-button(icon="library_books", class="more", label="MORE", secondary, @click="read_more(post.number)")
@@ -113,7 +113,9 @@ export default {
     },
     read_more(number) {
       this.$router.push(`/post/${number}`);
-      jump('#header');
+      jump('#header', {
+        duration: 300
+      });
     },
     close_snackbar() {
       this.snackbar = false;

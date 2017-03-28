@@ -1,13 +1,13 @@
 <template lang="pug">
-div#submit
-  mu-toast(v-if="showToast",:message="message" @close="hideToast")
-  div#title
-    span(v-if="!userName").
-      #[span.login(@click="login") 登陆]后就可以评论了呢
-    span(v-else).
-      Hi {{userName}} #[span.logout(@click="logout") (登出)]，欢迎评论哦
-  mu-text-field(hintText="回复内容(必填)", :multiLine="true", :rows="10", :fullWidth="true", v-model="content")
-  mu-raised-button(label="提交", @click="submit", :disabled="!submiting && !userName || !content", secondary)
+  #submit
+    mu-toast(v-if="showToast",:message="message" @close="hideToast")
+    #title
+      span(v-if="!userName").
+        #[span.login(@click="login") 登陆]后就可以评论了呢
+      span(v-else).
+        Hi {{userName}} #[span.logout(@click="logout") (登出)]，欢迎评论哦
+    mu-text-field(hintText="回复内容(必填)", :multiLine="true", :rows="10", :fullWidth="true", v-model="content")
+    mu-raised-button(label="提交", @click="submit", :disabled="!submiting && !userName || !content", secondary)
 </template>
 
 
@@ -20,8 +20,11 @@ div#submit
     color $primary_text_color
     margin-bottom 20px
     .login, .logout
+      display inline-block
       cursor pointer
       color $secondary_color
+      &:hover
+        transform scale(1.1)
     .logout
       font-size 20px
 </style>
@@ -34,6 +37,11 @@ import { loginByGithub } from '../util'
 
 export default {
   name: 'Submit',
+  created() {
+    this.$on('reply', function(name) {
+      this.content += `@${name} `;
+    });
+  },
   data() {
     return {
       content: '',
@@ -57,6 +65,8 @@ export default {
   methods: {
     async login() {
       const code = await loginByGithub();
+      this.message = '请稍等';
+      this.showToast = true;
       return this.$store.dispatch('exchangeToken', code);
     },
     async logout() {

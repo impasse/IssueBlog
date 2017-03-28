@@ -1,7 +1,7 @@
 <template lang="pug">
-  div#footer
-    div.copyright shyling
-    div.link
+  #footer
+    .copyright shyling
+    .link
       a(href="https://github.com/lingmm", target="__blank")
         img(src="../assets/github-logo.png", alt="Github")
 </template>

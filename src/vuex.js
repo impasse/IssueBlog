@@ -31,6 +31,9 @@ export const mutations = {
     },
     FETCHED_COMMENTS(state, comments) {
         state.current_comments = comments;
+    },
+    EARSE_COMMENTS(state) {
+        state.current_comments = [];
     }
 };
 
@@ -68,6 +71,7 @@ export const actions = {
         }
     },
     async fetchComments({ commit }, id) {
+        commit('EARSE_COMMENTS');
         commit('FETCHED_COMMENTS', await Comment.all(id));
     }
 }

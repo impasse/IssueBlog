@@ -1,12 +1,15 @@
 <template lang="pug">
-div.comment
-  div.left
-    img.avatar(:src="avatar")
-    div.name
-      a(:href="`https://github.com/${name}`") {{name}}
-  div.right
-    div.time {{date}}
-    div.content(v-html="marked(body)")
+  .comment(@mouseenter.stop="showReply", @mouseleave.stop="hideReply")
+    .left
+      img.avatar(:src="avatar")
+      .name
+        a(:href="`https://github.com/${name}`") {{name}}
+    .right
+      .time {{date}}
+      .content(v-html="marked(body)")
+      transition(enter-active-class="animated fadeIn", leave-active-class="animated fadeOut")
+        .reply(v-show="reply_visiblity")
+          span(@click="reply") 回复
 </template>
 
 
@@ -17,8 +20,9 @@ div.comment
   &
     display flex
     flex-flow row nowrap
+    box-sizing border-box
     padding-bottom 30px
-    margin-bottom 20px
+    padding-top 20px
     border-bottom 1px dashed #fcf
   .left
     &
@@ -33,16 +37,29 @@ div.comment
       border-radius 50% 50%
       display inline-block
       background-color pink
+      &:hover
+        transform scale(1.1)
+        transition-duration .5s
     .name
       margin-top .5em
+      &:hover
+        transform translateX(2px)
   .right
     &
       flex 1
+      display flex
+      flex-direction column
     .time
       text-align right
       color $secondary_text_color
     .content
       overflow-x auto
+      flex 1
+    .reply
+      text-align right
+      span
+        cursor pointer
+        color $secondary_color
 </style>
 
 
@@ -52,6 +69,11 @@ import marked from 'marked'
 
 export default {
   props: ['name', 'avatar', 'body', 'time'],
+  data() {
+    return {
+      reply_visiblity: false
+    }
+  },
   computed: {
     date() {
       return moment(this.time).format('YYYY-M-D HH:mm:ss');
@@ -61,6 +83,15 @@ export default {
     marked(v) {
       return marked(v || '', { sanitize: true })
         .replace(/@(\S{1,16})(?=\s)/g, '<a class="at" href="https://github.com/$1">@$1</a>');
+    },
+    reply() {
+      this.$emit('reply', this.name);
+    },
+    showReply() {
+      this.reply_visiblity = true;
+    },
+    hideReply() {
+      this.reply_visiblity = false;
     }
   }
 };
