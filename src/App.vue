@@ -1,5 +1,6 @@
 <template lang="pug">
   div#app
+    vue-progress-bar
     app-header
     router-view
     app-footer

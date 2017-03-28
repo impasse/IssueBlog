@@ -111,11 +111,14 @@ export default {
   },
   async created() {
     try {
+      this.$Progress.start();
       await Promise.all([
         this.$store.dispatch('fetchPost', this.id),
         this.$store.dispatch('fetchComments', this.id)
       ]);
+      this.$Progress.finish();
     } catch (e) {
+      this.$Progress.fail();
       this.message = '加载出错，你可以尝试登陆后重试';
       this.snackbar = true;
     }

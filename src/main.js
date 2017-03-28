@@ -3,6 +3,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+import VueProgressBar from 'vue-progressbar'
 
 import MuseUI from 'muse-ui'
 
@@ -19,6 +20,11 @@ Vue.use(VueResource);
 Vue.use(VueRouter);
 Vue.use(MuseUI);
 Vue.use(Vuex);
+Vue.use(VueProgressBar, {
+    color: '#42a5f5',
+    failedColor: '#f44336',
+    thickness: '2px'
+});
 
 Vue.http.options.root = '/api';
 const token = window.localStorage && window.localStorage.getItem('GITHUB_TOKEN');
