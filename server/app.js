@@ -16,6 +16,8 @@ const app = new Koa();
 
 app.keys = keys;
 
+const oneMonth = 30 * 24 * 60 * 60 * 1000;
+
 app.use(koaResponseTime());
 app.use(koaLogger());
 app.use(koaCompress());
@@ -23,9 +25,11 @@ app.use(koaConditionalGet());
 app.use(koaEtag());
 app.use(koaStatic(path.join(__dirname, '..', 'dist'), {
     index: false,
-    maxage: 1e3 * 3600 * 24 * 30
+    maxage: oneMonth
 }));
-app.use(koaSession(app));
+app.use(koaSession({
+    maxAge: oneMonth
+}, app));
 app.use(convert(koaBetterBody()));
 
 app.use(...require('./routes'));
