@@ -3,10 +3,15 @@ const crypto = require('crypto');
 const env = require('process').env;
 const router = require('koa-router')();
 const send = require('koa-send');
-const request = require('request-promise');
+const request = require('request-promise').defaults({
+  headers: {
+    'User-Agent': 'IssueBlog'
+  }
+});
 const { client_id, client_secret } = require('./config');
 
 async function fallback(ctx) {
+    ctx.set('Cache-Control', 'no-cache');
     await send(ctx, 'dist/index.html', {
         maxAge: 0
     });
@@ -51,6 +56,7 @@ router.get('/api/token', async ctx => {
 });
 
 router.post('/api/logout', async ctx =>{
+    await request.delete(`https://${client_id}:${client_secret}@api.github.com/applications/${client_id}/grants/${ctx.session.token.access_token}`);
     delete ctx.session.token;
     ctx.status = 200;
 });
