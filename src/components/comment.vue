@@ -82,7 +82,7 @@ export default {
   methods: {
     marked(v) {
       return marked(v || '', { sanitize: true })
-        .replace(/@(\S{1,16})(?=\s)/g, '<a class="at" href="https://github.com/$1">@$1</a>');
+        .replace(/@(\S{1,16})(?=\s)/g, '<a class="at" target="_blank" href="https://github.com/$1">@$1</a>');
     },
     reply() {
       this.$emit('reply', this.name);
