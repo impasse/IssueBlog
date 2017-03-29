@@ -49,7 +49,8 @@ export const Post = {
                             name: label.name,
                             color: label.color
                         };
-                    })
+                    }),
+                    comments: single.comments
                 }
             });
     }

@@ -5,7 +5,7 @@
       mu-col(width="95", tablet="85", desktop="80", class="post")
         mu-card.card
           div(@click="read_more(post.number)")
-            mu-card-title(:title="post.title", :subTitle="'Posted at '+ format_date(post.date)")
+            mu-card-title(:title="post.title", :subTitle="'Posted at '+ format_date(post.date) + format_comments_count(post)")
           mu-card-text(v-html="marked(init(post.body))", class="markdown-body text")
           .tags_more
             .tags
@@ -119,6 +119,13 @@ export default {
     },
     close_snackbar() {
       this.snackbar = false;
+    },
+    format_comments_count(post) {
+      if(post.comments){
+        return ` | ${post.comments} 条评论`;
+      }else{
+        return ' | 无评论';
+      }
     }
   }
 };
