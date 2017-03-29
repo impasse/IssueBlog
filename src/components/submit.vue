@@ -31,6 +31,7 @@
 
 
 <script>
+import jump from 'jump.js'
 import { mapState } from 'vuex'
 import { Comment } from '../model'
 import { loginByGithub } from '../util'
@@ -40,6 +41,7 @@ export default {
   created() {
     this.$on('reply', function(name, body) {
       this.content += `@${name}\n>${body}\n`;
+      jump('#submit');
     });
   },
   data() {

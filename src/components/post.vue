@@ -26,6 +26,9 @@
 @import '../assets/variables'
 
 #post
+  .markdown-body
+    a
+      color $secondary_color !important
   .row
     justify-content center
   .post
