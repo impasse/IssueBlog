@@ -6,7 +6,7 @@
         a(:href="`https://github.com/${name}`") {{name}}
     .right
       .time {{date}}
-      .content(v-html="marked(body)")
+      .content.markdown-body(v-html="marked(body)")
       transition(enter-active-class="animated fadeIn", leave-active-class="animated fadeOut")
         .reply(v-show="reply_visiblity")
           span(@click="reply") 回复
