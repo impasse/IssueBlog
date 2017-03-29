@@ -7,9 +7,8 @@
     .right
       .time {{date}}
       .content.markdown-body(v-html="marked(body)")
-      transition(enter-active-class="animated fadeIn", leave-active-class="animated fadeOut")
-        .reply(v-show="reply_visiblity")
-          span(@click="reply") 回复
+      .reply(:style="{ visibility: reply_visiblity ? 'visible' : 'hidden' }")
+        span(@click="reply") 回复
 </template>
 
 
@@ -53,7 +52,7 @@
       text-align right
       color $secondary_text_color
     .content
-      overflow-x auto
+      overflow auto
       flex 1
     .reply
       text-align right

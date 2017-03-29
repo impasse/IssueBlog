@@ -7,7 +7,7 @@
       span(v-else).
         Hi {{userName}} #[span.logout(@click="logout") (登出)]，欢迎评论哦
     mu-text-field(hintText="回复内容(必填)", :multiLine="true", :rows="10", :fullWidth="true", v-model="content")
-    mu-raised-button(label="提交", @click="submit", :disabled="!submiting && !userName || !content", secondary)
+    mu-raised-button(label="提交", @click="submit", :disabled="submiting || !userName || !content", secondary)
 </template>
 
 
@@ -40,7 +40,7 @@ export default {
   name: 'Submit',
   created() {
     this.$on('reply', function(name, body) {
-      const quote = `@${name}\r\n${body.replace(/(\r?\n){2}/,'$1')}`.split(/\r?\n/).map(v => `>${v}`).join('\r\n');
+      const quote = `@${name}\r\n${body.substr(0, 36).replace(/(\r?\n){2}/,'$1')}`.split(/\r?\n/).map(v => `>${v}`).join('\r\n');
       this.content += `${quote}\r\n\r\n`;
       jump('#submit');
     });
