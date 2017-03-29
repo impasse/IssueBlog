@@ -51,6 +51,7 @@
 </style>
 
 <script>
+import { mapState } from 'vuex'
 import { site_name, site_description } from '../const'
 import { Post } from '../model'
 import Util from '../mixin'
@@ -73,32 +74,33 @@ export default {
     return {
       site_name: site_name,
       site_description: site_description,
-      drawer_open: false,
-      tags: []
+      drawer_open: false
     };
   },
-  methods: {
-    goto(path) {
-      this.$router.push(path);
-    },
-    async toggle_drawer() {
-      this.drawer_open = !this.drawer_open;
-      if (this.tags.length == 0) {
-        const store = {}
-        const posts = await Post.all();
-        posts.forEach(post => {
+  computed: mapState({
+    tags(state){
+      const store = {};
+      const posts = state.current_list;
+      posts.forEach(post => {
           for (const tag of post.tags) {
             store[tag.name] = tag.color;
           }
         });
-        this.tags = Object.entries(store)
-          .map(([name, color]) => {
-            return {
-              name,
-              color
-            };
-          });
-      }
+      return Object.entries(store)
+        .map(([name, color]) => {
+          return {
+            name,
+            color
+          };
+        });
+    }
+  }),
+  methods: {
+    goto(path) {
+      this.$router.push(path);
+    },
+    toggle_drawer() {
+      this.drawer_open = !this.drawer_open;
     }
   }
 };
