@@ -38,8 +38,8 @@ import { loginByGithub } from '../util'
 export default {
   name: 'Submit',
   created() {
-    this.$on('reply', function(name) {
-      this.content += `@${name} `;
+    this.$on('reply', function(name, body) {
+      this.content += `@${name}\n>${body}\n`;
     });
   },
   data() {

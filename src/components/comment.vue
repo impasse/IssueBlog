@@ -85,7 +85,7 @@ export default {
         .replace(/@(\S{1,16})(?=\s)/g, '<a class="at" target="_blank" href="https://github.com/$1">@$1</a>');
     },
     reply() {
-      this.$emit('reply', this.name);
+      this.$emit('reply', this.name, this.body.split(/\r?\n\r?\n/)[0]);
     },
     showReply() {
       this.reply_visiblity = true;

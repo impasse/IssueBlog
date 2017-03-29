@@ -142,8 +142,8 @@ export default {
       ]);
       this.snackbar = false;
     },
-    reply(name) {
-      this.$refs.submit.$emit('reply', name);
+    reply(...args) {
+      this.$refs.submit.$emit('reply', ...args);
     }
   },
   components: {
