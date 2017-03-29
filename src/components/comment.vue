@@ -55,6 +55,8 @@
     .content
       overflow-x auto
       flex 1
+      .at
+        color $secondary_color !important
     .reply
       text-align right
       span
