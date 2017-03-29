@@ -40,7 +40,7 @@ export default {
   name: 'Submit',
   created() {
     this.$on('reply', function(name, body) {
-      this.content += `@${name}\n>${body}\n`;
+      this.content += `@${name}\n>${body}\n\n`;
       jump('#submit');
     });
   },
