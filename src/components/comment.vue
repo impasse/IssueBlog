@@ -18,7 +18,7 @@
 .comment
   &
     display flex
-    flex-flow row nowrap
+    flex-flow row wrap
     box-sizing border-box
     padding-bottom 30px
     padding-top 20px

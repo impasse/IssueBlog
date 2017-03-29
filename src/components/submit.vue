@@ -40,7 +40,7 @@ export default {
   name: 'Submit',
   created() {
     this.$on('reply', function(name, body) {
-      const quote = `@${name}\r\n${body.substr(0, 36).replace(/(\r?\n){2}/,'$1')}`.split(/\r?\n/).map(v => `>${v}`).join('\r\n');
+      const quote = `@${name}\r\n${body.replace(/(\r?\n){2}/,'$1')}`.split(/\r?\n/).map(v => `>${v}`).join('\r\n');
       this.content += `${quote}\r\n\r\n`;
       jump('#submit');
     });
