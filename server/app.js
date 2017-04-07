@@ -1,4 +1,5 @@
 const path = require('path');
+const os = require('os');
 const Koa = require('koa');
 const convert = require('koa-convert');
 const koaBetterBody = require('koa-better-body');
@@ -30,7 +31,9 @@ app.use(koaStatic(path.join(__dirname, '..', 'dist'), {
 app.use(koaSession({
     maxAge: oneMonth
 }, app));
-app.use(convert(koaBetterBody()));
+app.use(convert(koaBetterBody({
+  uploadDir: os.tmpdir() || path.join(__dirname, 'uploads/')
+})));
 
 app.use(...require('./routes'));
 

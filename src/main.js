@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import VueProgressBar from 'vue-progressbar'
+import ga from 'vue-ga'
 
 import MuseUI from 'muse-ui'
 
@@ -54,6 +55,8 @@ const router = new VueRouter({
         }
     }
 });
+
+ga(router, 'UA-96993727-1');
 
 new Vue({
     el: '#app',
