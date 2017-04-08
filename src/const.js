@@ -35,7 +35,7 @@ ouzz的博客|http://ouzz.me
 卷猫's blog|http://anneke.cn
 東雲研究所|http://blog.zhouys.ac.cn
 Just4fun|https://coolrc.me
-御坂網路司令塔|https://misaka.genderqueer.gq
+御坂網路司令塔|https://blog.misaka4e21.science/
 Zhustec's Blog|http://blog.zhustec.me/
 石樱灯笼的博客|http://blog.catscarlet.com/
 千里冰封|http://ice1000.org/
