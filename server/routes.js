@@ -22,7 +22,6 @@ router.get('/', fallback);
 router.get('/api/authorize', async ctx => {
     const query = {
         client_id,
-        client_secret,
         redirect_uri: 'http://shyling.com/api/code',
         scope: 'public_repo',
         allow_signup: true,
