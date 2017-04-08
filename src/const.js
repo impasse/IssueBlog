@@ -41,6 +41,7 @@ Zhustec's Blog|http://blog.zhustec.me/
 千里冰封|http://ice1000.org/
 Zelda's Blog|http://itsay.tech/
 So Faaaar|https://faaaar.com/
+星之所在|http://jimmy66.com/
 `);
 
 const about = `
