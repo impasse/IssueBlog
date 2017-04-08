@@ -43,6 +43,7 @@ export default {
       const quote = `@${name}: ${body.replace(/(\r?\n){2}/,'$1')}`.split(/\r?\n/).map(v => `>${v}`).join('\r\n');
       this.content += `${quote}\r\n\r\n`;
       jump('#submit');
+      this.$el && this.$el.focus();
     });
   },
   data() {
