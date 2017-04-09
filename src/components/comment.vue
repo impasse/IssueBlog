@@ -35,7 +35,6 @@
       height 90px
       border-radius 50% 50%
       display inline-block
-      background-color pink
       &:hover
         transform scale(1.1)
         transition-duration .5s
