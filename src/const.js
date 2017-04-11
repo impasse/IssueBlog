@@ -42,6 +42,7 @@ Zhustec's Blog|http://blog.zhustec.me/
 Zelda's Blog|http://itsay.tech/
 So Faaaar|https://faaaar.com/
 星之所在|http://jimmy66.com/
+Konge.Blog()|http://blog.konge.pw/
 `);
 
 const about = `
