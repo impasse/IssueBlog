@@ -1,0 +1,104 @@
+.post-page
+  position relative
+
+.post
+  &
+    min-height calc(100vh - 140px)
+  a
+    background-color transparent
+    color #b58900
+    text-decoration underline
+    &:hover
+      background-color #eee8d5
+      cursor crosshair
+  .post-title
+    color #b58900
+    font-size 4rem
+    font-weight 300
+    line-height 120%
+  .post-subtitle
+    color #93a1a1
+    font-weight 300
+  .post-report-bug
+    padding 10px
+    color #657b83
+    margin-top 30px
+    border 1px dashed rgba(37,26,26,.11)
+  .disqus
+      margin-top 20px
+  .post-content
+    margin-top 40px
+    color #657b83
+    font-size 18px
+    .border-image
+      border 1px solid #eee8d5
+    strong
+      font-weight 400
+    h2, h3, h4, h5, h6
+      position relative
+      font-weight 300
+      .header-anchor
+        visibility hidden
+        position absolute
+        transform translateX(-100%)
+        &:hover
+          cursor pointer
+          background-color transparent
+      &:hover
+        .header-anchor
+          visibility visible
+          text-decoration none !important
+    code
+      font-size 1rem
+      tab-size 4
+      color #bd10e0
+      &:before, &:after
+        content "`"
+    pre
+      border 1px solid #eee8d5
+      margin-top 30px
+      margin-bottom 30px
+      code
+        color inherit
+        &:before, &:after
+          content: ''
+    blockquote
+      border-color #EEE8D5
+    hr
+      background-color rgba(0,0,0,.04)
+    img
+      margin-bottom 30px
+      margin-top 20px
+    ul, ol
+      padding-left 0
+      >li
+        list-style-type cjk-ideographic
+      li
+        background-color rgba(0,0,0,.04)
+        padding 3px 10px
+      li:nth-child(2n)
+        background-color rgba(37, 26, 26, 0.11)
+
+.sidebar
+  .post-toc
+    position fixed
+    bottom 85px
+    width 300px
+    visibility hidden
+    .toc
+      margin 0
+      margin-bottom 10px
+      color #657b83
+      padding-left 20px
+      transform translateY(200%)
+      opacity 0
+      transition all .3s
+      &.toc-visible
+        transform translateY(0)
+        opacity 1
+      .toc-child
+        padding-left 20px
+    a
+      color #657b83
+      &:hover
+        background-color rgba(101, 123, 131, 0.11)
