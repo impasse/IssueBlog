@@ -6,7 +6,6 @@ import { post } from '../sources'
 export default class Post extends Component<any, any>{
     constructor(props) {
         super(props);
-        this.state = { post: {} };
     }
 
     render({ post }) {

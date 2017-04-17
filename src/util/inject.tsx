@@ -1,5 +1,5 @@
 import { h, Component } from 'preact'
-import { Observable, AsyncSubject } from 'rxjs'
+import { Observable } from 'rxjs'
 import * as shadowCompare from 'react-addons-shallow-compare'
 
 function resolve(key, value, isReSubscribe) {
@@ -72,6 +72,10 @@ export default function inject(sources = {}) {
                 for (const subject of this.state.subjects) {
                     subject.dispose();
                 }
+                this.setState({
+                    ...this.state,
+                    subjects: []
+                });
             }
 
             componentDidMount() {
