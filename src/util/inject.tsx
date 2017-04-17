@@ -63,7 +63,7 @@ export default function inject(sources = {}) {
 
             doSubscribe(isUpdate) {
                 for (const key in sources) {
-                    const value = typeof sources[key] === 'function' ? sources[key](this.props, this.state) : sources[key];
+                    const value = typeof sources[key] === 'function' ? sources[key].call(this, this.props, this.state) : sources[key];
                     resolve.call(this, key, value, !isUpdate);
                 }
             }
