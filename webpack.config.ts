@@ -114,7 +114,8 @@ module.exports = {
             name: 'manifest',
             chunks: ['vendor']
         }),
-        new FriendlyErrorsPlugin()
+        new FriendlyErrorsPlugin(),
+        // new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
     ],
     devtool: NODE_ENV === 'production' ? '#source-map' : '#cheap-module-source-map',
     devServer: {
