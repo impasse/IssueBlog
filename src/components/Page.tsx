@@ -9,12 +9,14 @@ export default class Page extends Component<any, any>{
     }
 
     render({ page }) {
+        page = page || {};
+        const { title, subTitle, body } = page;
         return (
             <section className="centered post-page">
                 <article class="post">
-                    {page && <h2 className="post-title">{page.title}</h2>}
-                    {page && page.subTitle && <h2 className="post-subtitle">{page.subTitle}</h2>}
-                    {page && <div className="post-content markdown-body" dangerouslySetInnerHTML={{__html: markdown(page.body)}}>Loading...</div>}
+                    {title && <h2 className="post-title">{title}</h2>}
+                    {subTitle && <h2 className="post-subtitle">{subTitle}</h2>}
+                    {body && <div className="post-content markdown-body" dangerouslySetInnerHTML={{__html: markdown(body)}}>Loading...</div>}
                 </article>
             </section>
         );
