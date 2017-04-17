@@ -1,5 +1,5 @@
 import { h, Component } from 'preact'
-import { Observable } from 'rxjs'
+import { Observable } from 'rxjs/Observable'
 
 function resolve(key, value, isReSubscribe) {
     if (value instanceof Promise) {
