@@ -1,15 +1,15 @@
-import * as path from 'path'
-import * as process from 'process'
+const path = require('path'),
+    process = require('process');
 
-import * as webpack from 'webpack'
-import * as ExtractTextPlugin from 'extract-text-webpack-plugin'
-import * as HtmlWebpackPlugin from 'html-webpack-plugin'
-import * as FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
-import * as OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'
-import * as CleanWebpackPlugin from 'clean-webpack-plugin'
+const webpack = require('webpack'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin'),
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin'),
+    OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin'),
+    CleanWebpackPlugin = require('clean-webpack-plugin');
 
-import * as autoprefixer from 'autoprefixer-stylus'
-import * as nib from 'nib'
+const autoprefixer = require('autoprefixer-stylus'),
+    nib = require('nib');
 
 const NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
 
