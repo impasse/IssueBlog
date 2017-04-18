@@ -1,6 +1,5 @@
 import { h, Component } from 'preact'
 import { Observable } from 'rxjs/Observable'
-import * as shallowCompare from 'react-addons-shallow-compare'
 
 function resolve(key, value, isReSubscribe) {
     if (value instanceof Promise) {
@@ -86,12 +85,8 @@ export default function inject(sources = {}) {
                 this.doUnSubscribe();
             }
 
-            componentWillReceiveProps(prevProps) {
+            componentDidUpdate(prevProps) {
                 this.doSubscribe(true);
-            }
-
-            componentShouldUpdate(nextProps, nextState) {
-                return shallowCompare(this, nextProps, nextState);
             }
 
             forceUpdate(cb) {

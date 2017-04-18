@@ -3,6 +3,8 @@ import { h, render } from 'preact'
 import Router from 'preact-router'
 import { Header, Posts, Footer, Post, NotFound, Page } from './components'
 
+import 'preact/devtools'
+
 import './style/main.styl'
 
 const Main = () => {

@@ -41,7 +41,6 @@
     "preact": "^8.1.0",
     "preact-compat": "^3.14.3",
     "preact-router": "^2.4.5",
-    "react-addons-shallow-compare": "^15.5.2",
     "rxjs": "^5.3.0"
   },
   "optionalDependencies": {
