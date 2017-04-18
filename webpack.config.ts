@@ -34,7 +34,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.tsx?$/i,
-                loader: 'ts-loader'
+                loader: 'awesome-typescript-loader'
             },
             {
                 test: /\.css$/i,
