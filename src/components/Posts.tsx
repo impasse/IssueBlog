@@ -9,6 +9,7 @@ export default class Posts extends Component<any, any>{
     }
 
     render({ posts }) {
+        console.log(this.context, this.base);
         return (
             <section className="centered">
                 <h2 class="egoist-name">Ling's <span>Blog</span></h2>
